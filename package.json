@@ -1,0 +1,59 @@
+{
+  "name": "@juspay-tech/react-hyper-js",
+  "version": "1.2.2",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "react",
+    "hyper-js",
+    "sdk",
+    "payments",
+    "integration"
+  ],
+  "dependencies": {
+    "@rescript/core": "^0.7.0",
+    "@rescript/react": "^0.12.1",
+    "@ryyppy/rescript-promise": "^2.1.0"
+  },
+  "peerDependencies": {
+    "react": "^16.9.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.9.0 || ^17.0.0 || ^18.0.0"
+  },
+  "scripts": {
+    "start": "esbuild src/Index.bs.js --bundle --outfile=dist/index.js --servedir=dist",
+    "build": "npm run build:js && npm run build:es",
+    "build:js": "esbuild src/Index.bs.js --bundle --outfile=dist/index.js --minify",
+    "build:es": "esbuild src/Index.bs.js --bundle --format=esm --outfile=dist/index.mjs --minify",
+    "re:build": "rescript",
+    "re:start": "rescript build -w",
+    "re:format": "rescript format -all",
+    "re:clean": "rescript clean",
+    "publish:public": "npm publish --access public"
+  },
+  "devDependencies": {
+    "esbuild": "^0.18.17",
+    "rescript": "^11.1.0"
+  },
+  "author": "Pritish Budhiraja <pritish.budhiraja@juspay.in>",
+  "description": "React wrapper for Hyper JS SDK for seamless payment integrations.",
+  "homepage": "https://github.com/juspay/react-hyper-js#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juspay/react-hyper-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/juspay/react-hyper-js/issues"
+  },
+  "license": "Apache-2.0"
+}
