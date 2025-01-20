@@ -6,9 +6,11 @@
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     }
   },
+  "types": "dist/index.d.ts",
   "files": [
     "dist/",
     "README.md",
@@ -32,9 +34,7 @@
   },
   "scripts": {
     "start": "esbuild src/Index.bs.js --bundle --outfile=dist/index.js --servedir=dist",
-    "build": "npm run build:js && npm run build:es",
-    "build:js": "esbuild src/Index.bs.js --bundle --outfile=dist/index.js --minify",
-    "build:es": "esbuild src/Index.bs.js --bundle --format=esm --outfile=dist/index.mjs --minify",
+    "build": "node build.js",
     "re:build": "rescript",
     "re:start": "rescript build -w",
     "re:format": "rescript format -all",

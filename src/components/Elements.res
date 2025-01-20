@@ -1,11 +1,11 @@
 @react.component
-let make = (~children, ~stripe: Promise.t<OrcaJs.switchInstance>, ~options: JSON.t) => {
+let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: JSON.t) => {
   let elementOptions = options->Context.elementsOptionObjMapper
   let (switchState, setSwitchState) = React.useState(() => Context.defaultSwitchContext)
   let (elementsState, setElementsState) = React.useState(() => Context.defaultElementsContext)
 
   React.useEffect0(() => {
-    stripe
+    hyper
     ->(Js.Promise.then_((switchInstance: OrcaJs.switchInstance) => {
       let orcaElementsConfig = switchInstance.elements(options)
       let newElemValues: Context.elementsType = {
