@@ -42,7 +42,7 @@
     "publish:public": "npm publish --access public"
   },
   "devDependencies": {
-    "esbuild": "^0.18.17",
+    "esbuild": "^0.25.0",
     "rescript": "^11.1.0"
   },
   "author": "Pritish Budhiraja <pritish.budhiraja@juspay.in>",
