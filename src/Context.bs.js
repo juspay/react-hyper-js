@@ -22,12 +22,22 @@ function paymentRequest(options) {
   return options;
 }
 
+function defaultSwitchContext_completeUpdateIntent(param) {
+  return Promise.resolve({});
+}
+
+function defaultSwitchContext_initiateUpdateIntent() {
+  return Promise.resolve({});
+}
+
 var defaultSwitchContext = {
   clientSecret: "",
   confirmPayment: confirmPaymentFn,
   confirmCardPayment: confirmCardPaymentFn,
   retrievePaymentIntent: retrievePaymentIntentFn,
-  paymentRequest: paymentRequest
+  paymentRequest: paymentRequest,
+  completeUpdateIntent: defaultSwitchContext_completeUpdateIntent,
+  initiateUpdateIntent: defaultSwitchContext_initiateUpdateIntent
 };
 
 var switchContext = React.createContext(defaultSwitchContext);

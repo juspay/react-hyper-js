@@ -63,4 +63,6 @@ type switchInstance = {
   retrievePaymentIntent: string => Promise.t<JSON.t>,
   paymentRequest: JSON.t => JSON.t,
   paymentMethodsManagementElements: JSON.t => element,
+  completeUpdateIntent: string => promise<JSON.t>,
+  initiateUpdateIntent: unit => promise<JSON.t>,
 }
