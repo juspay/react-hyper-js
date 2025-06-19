@@ -78,6 +78,8 @@ type switchContextType = {
   confirmCardPayment: (string, option<JSON.t>, option<JSON.t>) => Promise.t<JSON.t>,
   retrievePaymentIntent: string => Promise.t<JSON.t>,
   paymentRequest: JSON.t => JSON.t,
+  completeUpdateIntent: string => promise<JSON.t>,
+  initiateUpdateIntent: unit => promise<JSON.t>,
 }
 
 type paymentMethodsManagementSwitchContextType = {
@@ -109,6 +111,8 @@ let defaultSwitchContext = {
   confirmCardPayment: confirmCardPaymentFn,
   retrievePaymentIntent: retrievePaymentIntentFn,
   paymentRequest,
+  completeUpdateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
+  initiateUpdateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
 }
 
 let switchContext = React.createContext(defaultSwitchContext)

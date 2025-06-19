@@ -6,7 +6,7 @@ let make = (~children, ~stripe: Promise.t<OrcaJs.switchInstance>, ~options: JSON
 
   React.useEffect0(() => {
     stripe
-    ->(Js.Promise.then_((switchInstance: OrcaJs.switchInstance) => {
+    ->Js.Promise.then_((switchInstance: OrcaJs.switchInstance) => {
       let orcaElementsConfig = switchInstance.elements(options)
       let newElemValues: Context.elementsType = {
         options: elementOptions,
@@ -21,12 +21,14 @@ let make = (~children, ~stripe: Promise.t<OrcaJs.switchInstance>, ~options: JSON
         retrievePaymentIntent: switchInstance.retrievePaymentIntent,
         clientSecret: elementOptions.clientSecret,
         paymentRequest: switchInstance.paymentRequest,
+        completeUpdateIntent: switchInstance.completeUpdateIntent,
+        initiateUpdateIntent: switchInstance.initiateUpdateIntent,
       }
 
       setSwitchState(_ => switchValClone)
       setElementsState(_ => newElemValues)
       Promise.resolve(switchValClone)
-    }, _))
+    }, _)
     ->ignore
     None
   })
