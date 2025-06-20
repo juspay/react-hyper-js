@@ -1,14 +1,7 @@
 {
   "name": "@juspay-tech/react-hyper-js",
   "version": "1.2.3",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    }
-  },
+  "main": "dist/bundle.js",
   "files": [
     "dist/",
     "README.md",
@@ -31,10 +24,7 @@
     "react-dom": "^16.9.0 || ^17.0.0 || ^18.0.0"
   },
   "scripts": {
-    "start": "esbuild src/Index.bs.js --bundle --outfile=dist/index.js --servedir=dist",
-    "build": "npm run build:js && npm run build:es",
-    "build:js": "esbuild src/Index.bs.js --bundle --outfile=dist/index.js --minify",
-    "build:es": "esbuild src/Index.bs.js --bundle --format=esm --outfile=dist/index.mjs --minify",
+    "build": "webpack --mode production",
     "re:build": "rescript",
     "re:start": "rescript build -w",
     "re:format": "rescript format -all",
@@ -42,8 +32,14 @@
     "publish:public": "npm publish --access public"
   },
   "devDependencies": {
+    "@babel/core": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-react": "^7.27.1",
+    "babel-loader": "^10.0.0",
     "esbuild": "^0.18.17",
-    "rescript": "^11.1.0"
+    "rescript": "^11.1.0",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1"
   },
   "author": "Pritish Budhiraja <pritish.budhiraja@juspay.in>",
   "description": "React wrapper for Hyper JS SDK for seamless payment integrations.",
