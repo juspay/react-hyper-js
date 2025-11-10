@@ -39,6 +39,7 @@ function Elements(props) {
                                 var switchValClone_paymentRequest = switchInstance.paymentRequest;
                                 var switchValClone_completeUpdateIntent = switchInstance.completeUpdateIntent;
                                 var switchValClone_initiateUpdateIntent = switchInstance.initiateUpdateIntent;
+                                var switchValClone_preloadSDKWithParams = switchInstance.preloadSDKWithParams;
                                 var switchValClone = {
                                   clientSecret: switchValClone_clientSecret,
                                   confirmPayment: switchValClone_confirmPayment,
@@ -46,7 +47,8 @@ function Elements(props) {
                                   retrievePaymentIntent: switchValClone_retrievePaymentIntent,
                                   paymentRequest: switchValClone_paymentRequest,
                                   completeUpdateIntent: switchValClone_completeUpdateIntent,
-                                  initiateUpdateIntent: switchValClone_initiateUpdateIntent
+                                  initiateUpdateIntent: switchValClone_initiateUpdateIntent,
+                                  preloadSDKWithParams: switchValClone_preloadSDKWithParams
                                 };
                                 setSwitchState(function (param) {
                                       return switchValClone;

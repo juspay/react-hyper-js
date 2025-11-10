@@ -30,6 +30,10 @@ function defaultSwitchContext_initiateUpdateIntent() {
   return Promise.resolve({});
 }
 
+function defaultSwitchContext_preloadSDKWithParams(param) {
+  
+}
+
 var defaultSwitchContext = {
   clientSecret: "",
   confirmPayment: confirmPaymentFn,
@@ -37,7 +41,8 @@ var defaultSwitchContext = {
   retrievePaymentIntent: retrievePaymentIntentFn,
   paymentRequest: paymentRequest,
   completeUpdateIntent: defaultSwitchContext_completeUpdateIntent,
-  initiateUpdateIntent: defaultSwitchContext_initiateUpdateIntent
+  initiateUpdateIntent: defaultSwitchContext_initiateUpdateIntent,
+  preloadSDKWithParams: defaultSwitchContext_preloadSDKWithParams
 };
 
 var switchContext = React.createContext(defaultSwitchContext);

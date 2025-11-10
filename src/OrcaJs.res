@@ -65,4 +65,5 @@ type switchInstance = {
   paymentMethodsManagementElements: JSON.t => element,
   completeUpdateIntent: string => promise<JSON.t>,
   initiateUpdateIntent: unit => promise<JSON.t>,
+  preloadSDKWithParams: JSON.t => unit,
 }
