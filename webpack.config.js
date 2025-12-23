@@ -17,7 +17,7 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
+            presets: ["@babel/preset-env"],
           },
         },
       },
@@ -35,6 +35,11 @@ module.exports = {
       commonjs2: "react-dom",
       amd: "react-dom",
       root: "ReactDOM",
+    },
+    "react/jsx-runtime": {
+      commonjs: "react/jsx-runtime",
+      commonjs2: "react/jsx-runtime",
+      amd: "react/jsx-runtime",
     },
   },
   mode: "production",
