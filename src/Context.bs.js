@@ -10,6 +10,10 @@ function confirmPaymentFn(_elements) {
   return Promise.resolve({});
 }
 
+function confirmTokenizationFn(_elements) {
+  return Promise.resolve({});
+}
+
 function confirmCardPaymentFn(_clientSecretId, _data, _options) {
   return Promise.resolve({});
 }
@@ -50,7 +54,8 @@ var SwitchContextProvider = {
 
 var defaultPaymentMethodsManagementSwitchContext = {
   ephemeralKey: "",
-  paymentRequest: paymentRequest
+  paymentRequest: paymentRequest,
+  confirmTokenization: confirmTokenizationFn
 };
 
 var paymentMethodsManagementSwitchContext = React.createContext(defaultPaymentMethodsManagementSwitchContext);
@@ -157,6 +162,7 @@ var PaymentMethodsManagementElementsContextProvider = {
 
 export {
   confirmPaymentFn ,
+  confirmTokenizationFn ,
   confirmCardPaymentFn ,
   retrievePaymentIntentFn ,
   paymentRequest ,

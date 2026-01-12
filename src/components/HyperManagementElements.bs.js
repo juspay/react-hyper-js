@@ -34,9 +34,11 @@ function HyperManagementElements(props) {
                                 };
                                 var switchValClone_ephemeralKey = paymentMethodsManagementElementOptions.ephemeralKey;
                                 var switchValClone_paymentRequest = switchInstance.paymentRequest;
+                                var switchValClone_confirmTokenization = switchInstance.confirmTokenization;
                                 var switchValClone = {
                                   ephemeralKey: switchValClone_ephemeralKey,
-                                  paymentRequest: switchValClone_paymentRequest
+                                  paymentRequest: switchValClone_paymentRequest,
+                                  confirmTokenization: switchValClone_confirmTokenization
                                 };
                                 setSwitchState(function (param) {
                                       return switchValClone;

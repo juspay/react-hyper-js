@@ -12,6 +12,10 @@ let useHyper = () => {
   React.useContext(Context.switchContext)
 }
 
+let useHyperManagement = () => {
+  React.useContext(Context.paymentMethodsManagementSwitchContext)
+}
+
 let useStripe = () => {
   Console.warn("useStripe() is deprecated. Use useHyper() instead")
   useHyper()
