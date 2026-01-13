@@ -21,10 +21,6 @@ function useHyper() {
   return React.useContext(Context.switchContext);
 }
 
-function useHyperManagement() {
-  return React.useContext(Context.paymentMethodsManagementSwitchContext);
-}
-
 function useStripe() {
   console.warn("useStripe() is deprecated. Use useHyper() instead");
   return React.useContext(Context.switchContext);
@@ -80,7 +76,6 @@ var PaymentMethodsManagementElement$1 = PaymentMethodsManagementElement.make;
 export {
   useHyper ,
   useStripe ,
-  useHyperManagement ,
   useWidgets ,
   useElements ,
   Elements$1 as Elements,

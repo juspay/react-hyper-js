@@ -80,12 +80,12 @@ type switchContextType = {
   paymentRequest: JSON.t => JSON.t,
   completeUpdateIntent: string => promise<JSON.t>,
   initiateUpdateIntent: unit => promise<JSON.t>,
+  confirmTokenization: JSON.t => Promise.t<JSON.t>,
 }
 
 type paymentMethodsManagementSwitchContextType = {
   ephemeralKey: string,
   paymentRequest: JSON.t => JSON.t,
-  confirmTokenization: JSON.t => Promise.t<JSON.t>,
 }
 
 let confirmPaymentFn = (_elements: JSON.t) => {
@@ -119,6 +119,7 @@ let defaultSwitchContext = {
   paymentRequest,
   completeUpdateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
   initiateUpdateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
+  confirmTokenization: confirmTokenizationFn,
 }
 
 let switchContext = React.createContext(defaultSwitchContext)
@@ -130,7 +131,6 @@ module SwitchContextProvider = {
 let defaultPaymentMethodsManagementSwitchContext = {
   ephemeralKey: "",
   paymentRequest,
-  confirmTokenization: confirmTokenizationFn,
 }
 
 let paymentMethodsManagementSwitchContext = React.createContext(
@@ -138,7 +138,7 @@ let paymentMethodsManagementSwitchContext = React.createContext(
 )
 
 module PaymentMethodsManagementSwitchContextProvider = {
-  let make = React.Context.provider(paymentMethodsManagementSwitchContext)
+  let make = React.Context.provider(switchContext)
 }
 
 let getString = (dict, key, defaultVal) => {

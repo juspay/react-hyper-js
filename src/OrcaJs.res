@@ -65,11 +65,5 @@ type switchInstance = {
   paymentMethodsManagementElements: JSON.t => element,
   completeUpdateIntent: string => promise<JSON.t>,
   initiateUpdateIntent: unit => promise<JSON.t>,
-}
-
-type managementSwitchInstance = {
-  paymentMethodsManagementElements: JSON.t => element,
-  elements: JSON.t => element,
-  paymentRequest: JSON.t => JSON.t,
   confirmTokenization: JSON.t => Promise.t<JSON.t>,
 }

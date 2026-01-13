@@ -9,7 +9,6 @@ type eventData = {
 }
 let useHyper: unit => Context.switchContextType
 let useStripe: unit => Context.switchContextType
-let useHyperManagement: unit => Context.paymentMethodsManagementSwitchContextType
 let useWidgets: unit => Context.elementsType
 let useElements: unit => Context.elementsType
 let \"Elements": Elements.props<
@@ -190,7 +189,7 @@ let \"ExpressCheckoutElement": ExpressCheckoutElement.props<
 > => React.element
 let \"HyperManagementElements": HyperManagementElements.props<
   React.element,
-  RescriptCore.Promise.t<OrcaJs.managementSwitchInstance>,
+  RescriptCore.Promise.t<OrcaJs.switchInstance>,
   RescriptCore.JSON.t,
 > => React.element
 let \"PaymentMethodsManagementElement": PaymentMethodsManagementElement.props<

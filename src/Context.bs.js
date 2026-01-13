@@ -41,7 +41,8 @@ var defaultSwitchContext = {
   retrievePaymentIntent: retrievePaymentIntentFn,
   paymentRequest: paymentRequest,
   completeUpdateIntent: defaultSwitchContext_completeUpdateIntent,
-  initiateUpdateIntent: defaultSwitchContext_initiateUpdateIntent
+  initiateUpdateIntent: defaultSwitchContext_initiateUpdateIntent,
+  confirmTokenization: confirmTokenizationFn
 };
 
 var switchContext = React.createContext(defaultSwitchContext);
@@ -54,13 +55,12 @@ var SwitchContextProvider = {
 
 var defaultPaymentMethodsManagementSwitchContext = {
   ephemeralKey: "",
-  paymentRequest: paymentRequest,
-  confirmTokenization: confirmTokenizationFn
+  paymentRequest: paymentRequest
 };
 
 var paymentMethodsManagementSwitchContext = React.createContext(defaultPaymentMethodsManagementSwitchContext);
 
-var make$1 = paymentMethodsManagementSwitchContext.Provider;
+var make$1 = switchContext.Provider;
 
 var PaymentMethodsManagementSwitchContextProvider = {
   make: make$1
