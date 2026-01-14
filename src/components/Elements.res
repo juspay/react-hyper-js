@@ -23,6 +23,7 @@ let make = (~children, ~stripe: Promise.t<OrcaJs.switchInstance>, ~options: JSON
         paymentRequest: switchInstance.paymentRequest,
         completeUpdateIntent: switchInstance.completeUpdateIntent,
         initiateUpdateIntent: switchInstance.initiateUpdateIntent,
+        confirmTokenization: switchInstance.confirmTokenization,
       }
 
       setSwitchState(_ => switchValClone)

@@ -30,6 +30,10 @@ function defaultSwitchContext_initiateUpdateIntent() {
   return Promise.resolve({});
 }
 
+function defaultSwitchContext_confirmTokenization(param) {
+  return Promise.resolve({});
+}
+
 var defaultSwitchContext = {
   clientSecret: "",
   confirmPayment: confirmPaymentFn,
@@ -37,7 +41,8 @@ var defaultSwitchContext = {
   retrievePaymentIntent: retrievePaymentIntentFn,
   paymentRequest: paymentRequest,
   completeUpdateIntent: defaultSwitchContext_completeUpdateIntent,
-  initiateUpdateIntent: defaultSwitchContext_initiateUpdateIntent
+  initiateUpdateIntent: defaultSwitchContext_initiateUpdateIntent,
+  confirmTokenization: defaultSwitchContext_confirmTokenization
 };
 
 var switchContext = React.createContext(defaultSwitchContext);
@@ -55,7 +60,7 @@ var defaultPaymentMethodsManagementSwitchContext = {
 
 var paymentMethodsManagementSwitchContext = React.createContext(defaultPaymentMethodsManagementSwitchContext);
 
-var make$1 = paymentMethodsManagementSwitchContext.Provider;
+var make$1 = switchContext.Provider;
 
 var PaymentMethodsManagementSwitchContextProvider = {
   make: make$1

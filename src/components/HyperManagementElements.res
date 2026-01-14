@@ -2,9 +2,7 @@
 let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: JSON.t) => {
   let paymentMethodsManagementElementOptions =
     options->Context.paymentMethodsManagementElementsOptionObjMapper
-  let (switchState, setSwitchState) = React.useState(() =>
-    Context.defaultPaymentMethodsManagementSwitchContext
-  )
+  let (switchState, setSwitchState) = React.useState(() => Context.defaultSwitchContext)
   let (elementsState, setElementsState) = React.useState(() =>
     Context.defaultPaymentMethodsManagementElementsContext
   )
@@ -21,9 +19,15 @@ let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: JSON.
         create: orcaElementsConfig.create,
       }
 
-      let switchValClone: Context.paymentMethodsManagementSwitchContextType = {
+      let switchValClone: Context.switchContextType = {
+        confirmPayment: switchInstance.confirmPayment,
+        confirmCardPayment: switchInstance.confirmCardPayment,
+        retrievePaymentIntent: switchInstance.retrievePaymentIntent,
+        clientSecret: "",
         paymentRequest: switchInstance.paymentRequest,
-        ephemeralKey: paymentMethodsManagementElementOptions.ephemeralKey,
+        completeUpdateIntent: switchInstance.completeUpdateIntent,
+        initiateUpdateIntent: switchInstance.initiateUpdateIntent,
+        confirmTokenization: switchInstance.confirmTokenization,
       }
       setSwitchState(_ => switchValClone)
       setElementsState(_ => newElemValues)

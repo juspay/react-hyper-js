@@ -39,6 +39,7 @@ function HyperElements(props) {
                                 var switchValClone_paymentRequest = switchInstance.paymentRequest;
                                 var switchValClone_completeUpdateIntent = switchInstance.completeUpdateIntent;
                                 var switchValClone_initiateUpdateIntent = switchInstance.initiateUpdateIntent;
+                                var switchValClone_confirmTokenization = switchInstance.confirmTokenization;
                                 var switchValClone = {
                                   clientSecret: switchValClone_clientSecret,
                                   confirmPayment: switchValClone_confirmPayment,
@@ -46,7 +47,8 @@ function HyperElements(props) {
                                   retrievePaymentIntent: switchValClone_retrievePaymentIntent,
                                   paymentRequest: switchValClone_paymentRequest,
                                   completeUpdateIntent: switchValClone_completeUpdateIntent,
-                                  initiateUpdateIntent: switchValClone_initiateUpdateIntent
+                                  initiateUpdateIntent: switchValClone_initiateUpdateIntent,
+                                  confirmTokenization: switchValClone_confirmTokenization
                                 };
                                 setSwitchState(function (param) {
                                       return switchValClone;

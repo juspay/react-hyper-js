@@ -10,7 +10,7 @@ function HyperManagementElements(props) {
   var hyper = props.hyper;
   var paymentMethodsManagementElementOptions = Context.paymentMethodsManagementElementsOptionObjMapper(options);
   var match = React.useState(function () {
-        return Context.defaultPaymentMethodsManagementSwitchContext;
+        return Context.defaultSwitchContext;
       });
   var setSwitchState = match[1];
   var match$1 = React.useState(function () {
@@ -32,11 +32,22 @@ function HyperManagementElements(props) {
                                   fetchUpdates: newElemValues_fetchUpdates,
                                   create: newElemValues_create
                                 };
-                                var switchValClone_ephemeralKey = paymentMethodsManagementElementOptions.ephemeralKey;
+                                var switchValClone_confirmPayment = switchInstance.confirmPayment;
+                                var switchValClone_confirmCardPayment = switchInstance.confirmCardPayment;
+                                var switchValClone_retrievePaymentIntent = switchInstance.retrievePaymentIntent;
                                 var switchValClone_paymentRequest = switchInstance.paymentRequest;
+                                var switchValClone_completeUpdateIntent = switchInstance.completeUpdateIntent;
+                                var switchValClone_initiateUpdateIntent = switchInstance.initiateUpdateIntent;
+                                var switchValClone_confirmTokenization = switchInstance.confirmTokenization;
                                 var switchValClone = {
-                                  ephemeralKey: switchValClone_ephemeralKey,
-                                  paymentRequest: switchValClone_paymentRequest
+                                  clientSecret: "",
+                                  confirmPayment: switchValClone_confirmPayment,
+                                  confirmCardPayment: switchValClone_confirmCardPayment,
+                                  retrievePaymentIntent: switchValClone_retrievePaymentIntent,
+                                  paymentRequest: switchValClone_paymentRequest,
+                                  completeUpdateIntent: switchValClone_completeUpdateIntent,
+                                  initiateUpdateIntent: switchValClone_initiateUpdateIntent,
+                                  confirmTokenization: switchValClone_confirmTokenization
                                 };
                                 setSwitchState(function (param) {
                                       return switchValClone;
