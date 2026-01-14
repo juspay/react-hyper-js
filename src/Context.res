@@ -92,10 +92,6 @@ let confirmPaymentFn = (_elements: JSON.t) => {
   Promise.resolve(Dict.make()->JSON.Encode.object)
 }
 
-let confirmTokenizationFn = (_elements: JSON.t) => {
-  Promise.resolve(Dict.make()->JSON.Encode.object)
-}
-
 let confirmCardPaymentFn = (
   _clientSecretId: string,
   _data: option<JSON.t>,
@@ -119,7 +115,7 @@ let defaultSwitchContext = {
   paymentRequest,
   completeUpdateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
   initiateUpdateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
-  confirmTokenization: confirmTokenizationFn,
+  confirmTokenization: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
 }
 
 let switchContext = React.createContext(defaultSwitchContext)

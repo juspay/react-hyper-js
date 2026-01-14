@@ -10,10 +10,6 @@ function confirmPaymentFn(_elements) {
   return Promise.resolve({});
 }
 
-function confirmTokenizationFn(_elements) {
-  return Promise.resolve({});
-}
-
 function confirmCardPaymentFn(_clientSecretId, _data, _options) {
   return Promise.resolve({});
 }
@@ -34,6 +30,10 @@ function defaultSwitchContext_initiateUpdateIntent() {
   return Promise.resolve({});
 }
 
+function defaultSwitchContext_confirmTokenization(param) {
+  return Promise.resolve({});
+}
+
 var defaultSwitchContext = {
   clientSecret: "",
   confirmPayment: confirmPaymentFn,
@@ -42,7 +42,7 @@ var defaultSwitchContext = {
   paymentRequest: paymentRequest,
   completeUpdateIntent: defaultSwitchContext_completeUpdateIntent,
   initiateUpdateIntent: defaultSwitchContext_initiateUpdateIntent,
-  confirmTokenization: confirmTokenizationFn
+  confirmTokenization: defaultSwitchContext_confirmTokenization
 };
 
 var switchContext = React.createContext(defaultSwitchContext);
@@ -162,7 +162,6 @@ var PaymentMethodsManagementElementsContextProvider = {
 
 export {
   confirmPaymentFn ,
-  confirmTokenizationFn ,
   confirmCardPaymentFn ,
   retrievePaymentIntentFn ,
   paymentRequest ,
