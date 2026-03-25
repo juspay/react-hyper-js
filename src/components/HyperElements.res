@@ -6,7 +6,7 @@ let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: JSON.
 
   React.useEffect0(() => {
     hyper
-    ->Js.Promise.then_((switchInstance: OrcaJs.switchInstance) => {
+    ->(Js.Promise.then_((switchInstance: OrcaJs.switchInstance) => {
       let orcaElementsConfig = switchInstance.elements(options)
       let newElemValues: Context.elementsType = {
         options: elementOptions,
@@ -14,6 +14,7 @@ let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: JSON.
         getElement: orcaElementsConfig.getElement,
         fetchUpdates: orcaElementsConfig.fetchUpdates,
         create: orcaElementsConfig.create,
+        confirmPayment: orcaElementsConfig.confirmPayment,
       }
       let switchValClone: Context.switchContextType = {
         confirmPayment: switchInstance.confirmPayment,
@@ -29,7 +30,7 @@ let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: JSON.
       setSwitchState(_ => switchValClone)
       setElementsState(_ => newElemValues)
       Promise.resolve(switchValClone)
-    }, _)
+    }, _))
     ->ignore
     None
   })

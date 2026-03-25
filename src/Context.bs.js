@@ -114,7 +114,8 @@ var defaultElementsContext = {
   update: update,
   getElement: getElement,
   fetchUpdates: fetchUpdates,
-  create: create
+  create: create,
+  confirmPayment: confirmPaymentFn
 };
 
 var elementsContext = React.createContext(defaultElementsContext);

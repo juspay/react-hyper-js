@@ -47,6 +47,7 @@ type element = {
   update: JSON.t => unit,
   fetchUpdates: unit => Promise.t<JSON.t>,
   create: (string, JSON.t) => paymentElement,
+  confirmPayment: JSON.t => Promise.t<JSON.t>,
 }
 
 type confirmParams = {return_url: string}
