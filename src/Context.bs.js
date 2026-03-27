@@ -22,6 +22,18 @@ function paymentRequest(options) {
   return options;
 }
 
+function defaultGetCustomerSavedPaymentMethods() {
+  return Promise.resolve(null);
+}
+
+var defaultInitPaymentSession = {
+  getCustomerSavedPaymentMethods: defaultGetCustomerSavedPaymentMethods
+};
+
+function defaultSwitchContext_initPaymentSession(param) {
+  return defaultInitPaymentSession;
+}
+
 function defaultSwitchContext_completeUpdateIntent(param) {
   return Promise.resolve({});
 }
@@ -40,6 +52,7 @@ var defaultSwitchContext = {
   confirmCardPayment: confirmCardPaymentFn,
   retrievePaymentIntent: retrievePaymentIntentFn,
   paymentRequest: paymentRequest,
+  initPaymentSession: defaultSwitchContext_initPaymentSession,
   completeUpdateIntent: defaultSwitchContext_completeUpdateIntent,
   initiateUpdateIntent: defaultSwitchContext_initiateUpdateIntent,
   confirmTokenization: defaultSwitchContext_confirmTokenization
@@ -165,6 +178,8 @@ export {
   confirmCardPaymentFn ,
   retrievePaymentIntentFn ,
   paymentRequest ,
+  defaultGetCustomerSavedPaymentMethods ,
+  defaultInitPaymentSession ,
   defaultSwitchContext ,
   switchContext ,
   SwitchContextProvider ,

@@ -56,12 +56,22 @@ type confirmPaymentParams = {
   confirmParams: Nullable.t<confirmParams>,
 }
 
+type getCustomerSavedPaymentMethods = {
+  getCustomerDefaultSavedPaymentMethodData: unit => JSON.t,
+  getCustomerLastUsedPaymentMethodData: unit => JSON.t,
+  confirmWithCustomerDefaultPaymentMethod: JSON.t => Promise.t<JSON.t>,
+  confirmWithLastUsedPaymentMethod: JSON.t => Promise.t<JSON.t>,
+}
+
+type initPaymentSession = {getCustomerSavedPaymentMethods: unit => Promise.t<JSON.t>}
+
 type switchInstance = {
   confirmPayment: JSON.t => Promise.t<JSON.t>,
   elements: JSON.t => element,
   confirmCardPayment: (string, option<JSON.t>, option<JSON.t>) => Promise.t<JSON.t>,
   retrievePaymentIntent: string => Promise.t<JSON.t>,
   paymentRequest: JSON.t => JSON.t,
+  initPaymentSession: JSON.t => initPaymentSession,
   paymentMethodsManagementElements: JSON.t => element,
   completeUpdateIntent: string => promise<JSON.t>,
   initiateUpdateIntent: unit => promise<JSON.t>,
