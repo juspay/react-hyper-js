@@ -21,6 +21,7 @@ let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: JSON.
         retrievePaymentIntent: switchInstance.retrievePaymentIntent,
         clientSecret: elementOptions.clientSecret,
         paymentRequest: switchInstance.paymentRequest,
+        initPaymentSession: switchInstance.initPaymentSession,
         completeUpdateIntent: switchInstance.completeUpdateIntent,
         initiateUpdateIntent: switchInstance.initiateUpdateIntent,
         confirmTokenization: switchInstance.confirmTokenization,
