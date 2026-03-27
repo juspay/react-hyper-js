@@ -11,6 +11,11 @@ let useHyper: unit => Context.switchContextType
 let useStripe: unit => Context.switchContextType
 let useWidgets: unit => Context.elementsType
 let useElements: unit => Context.elementsType
+let usePaymentSession: unit => Context.paymentSessionContextType
+let initPaymentSession: (
+  promise<OrcaJs.switchInstance>,
+  RescriptCore.JSON.t,
+) => promise<OrcaJs.initPaymentSessionType>
 let \"Elements": Elements.props<
   React.element,
   RescriptCore.Promise.t<OrcaJs.switchInstance>,
@@ -202,3 +207,4 @@ let \"PaymentMethodsManagementElement": PaymentMethodsManagementElement.props<
   option<option<RescriptCore.JSON.t> => unit>,
   option<option<RescriptCore.JSON.t> => unit>,
 > => Jsx.element
+

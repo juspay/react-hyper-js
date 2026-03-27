@@ -136,6 +136,27 @@ function paymentMethodsManagementElementsOptionObjMapper(options) {
         };
 }
 
+function defaultPaymentSessionContext_getCustomerSavedPaymentMethods() {
+  return Promise.resolve({});
+}
+
+function defaultPaymentSessionContext_updateIntent(param) {
+  return Promise.resolve({});
+}
+
+var defaultPaymentSessionContext = {
+  getCustomerSavedPaymentMethods: defaultPaymentSessionContext_getCustomerSavedPaymentMethods,
+  updateIntent: defaultPaymentSessionContext_updateIntent
+};
+
+var paymentSessionContext = React.createContext(defaultPaymentSessionContext);
+
+var make$3 = paymentSessionContext.Provider;
+
+var PaymentSessionContextProvider = {
+  make: make$3
+};
+
 var defaultPaymentMethodsManagementElementsContext_options = {
   fonts: [],
   locale: "",
@@ -154,10 +175,10 @@ var defaultPaymentMethodsManagementElementsContext = {
 
 var paymentMethodsManagementElementsContext = React.createContext(defaultPaymentMethodsManagementElementsContext);
 
-var make$3 = paymentMethodsManagementElementsContext.Provider;
+var make$4 = paymentMethodsManagementElementsContext.Provider;
 
 var PaymentMethodsManagementElementsContextProvider = {
-  make: make$3
+  make: make$4
 };
 
 export {
@@ -181,6 +202,9 @@ export {
   elementsContext ,
   ElementsContextProvider ,
   paymentMethodsManagementElementsOptionObjMapper ,
+  defaultPaymentSessionContext ,
+  paymentSessionContext ,
+  PaymentSessionContextProvider ,
   defaultPaymentMethodsManagementElementsContext ,
   paymentMethodsManagementElementsContext ,
   PaymentMethodsManagementElementsContextProvider ,

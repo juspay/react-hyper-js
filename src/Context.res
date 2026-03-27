@@ -216,6 +216,22 @@ let paymentMethodsManagementElementsOptionObjMapper = (options: JSON.t) => {
   }
 }
 
+type paymentSessionContextType = {
+  getCustomerSavedPaymentMethods: unit => promise<JSON.t>,
+  updateIntent: (unit => promise<string>) => promise<JSON.t>,
+}
+
+let defaultPaymentSessionContext: paymentSessionContextType = {
+  getCustomerSavedPaymentMethods: () => Promise.resolve(Dict.make()->JSON.Encode.object),
+  updateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
+}
+
+let paymentSessionContext = React.createContext(defaultPaymentSessionContext)
+
+module PaymentSessionContextProvider = {
+  let make = React.Context.provider(paymentSessionContext)
+}
+
 let defaultPaymentMethodsManagementElementsContext: paymentMethodsManagementElementsType = {
   options: {
     fonts: [],

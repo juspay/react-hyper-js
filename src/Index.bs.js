@@ -26,6 +26,15 @@ function useStripe() {
   return React.useContext(Context.switchContext);
 }
 
+function usePaymentSession() {
+  return React.useContext(Context.paymentSessionContext);
+}
+
+async function initPaymentSession(hyperPromise, options) {
+  var hyper = await hyperPromise;
+  return hyper.initPaymentSession(options);
+}
+
 function useWidgets() {
   return React.useContext(Context.elementsContext);
 }
@@ -78,6 +87,8 @@ export {
   useStripe ,
   useWidgets ,
   useElements ,
+  usePaymentSession ,
+  initPaymentSession ,
   Elements$1 as Elements,
   HyperElements$1 as HyperElements,
   PaymentElement$1 as PaymentElement,
