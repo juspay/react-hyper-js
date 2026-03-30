@@ -15,7 +15,7 @@ let usePaymentSession: unit => Context.paymentSessionContextType
 let initPaymentSession: (
   promise<OrcaJs.switchInstance>,
   RescriptCore.JSON.t,
-) => promise<OrcaJs.initPaymentSessionType>
+) => promise<OrcaJs.initPaymentSession>
 let \"Elements": Elements.props<
   React.element,
   RescriptCore.Promise.t<OrcaJs.switchInstance>,
@@ -207,4 +207,3 @@ let \"PaymentMethodsManagementElement": PaymentMethodsManagementElement.props<
   option<option<RescriptCore.JSON.t> => unit>,
   option<option<RescriptCore.JSON.t> => unit>,
 > => Jsx.element
-

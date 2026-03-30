@@ -36,6 +36,7 @@ function HyperManagementElements(props) {
                                 var switchValClone_confirmCardPayment = switchInstance.confirmCardPayment;
                                 var switchValClone_retrievePaymentIntent = switchInstance.retrievePaymentIntent;
                                 var switchValClone_paymentRequest = switchInstance.paymentRequest;
+                                var switchValClone_initPaymentSession = switchInstance.initPaymentSession;
                                 var switchValClone_completeUpdateIntent = switchInstance.completeUpdateIntent;
                                 var switchValClone_initiateUpdateIntent = switchInstance.initiateUpdateIntent;
                                 var switchValClone_confirmTokenization = switchInstance.confirmTokenization;
@@ -45,6 +46,7 @@ function HyperManagementElements(props) {
                                   confirmCardPayment: switchValClone_confirmCardPayment,
                                   retrievePaymentIntent: switchValClone_retrievePaymentIntent,
                                   paymentRequest: switchValClone_paymentRequest,
+                                  initPaymentSession: switchValClone_initPaymentSession,
                                   completeUpdateIntent: switchValClone_completeUpdateIntent,
                                   initiateUpdateIntent: switchValClone_initiateUpdateIntent,
                                   confirmTokenization: switchValClone_confirmTokenization

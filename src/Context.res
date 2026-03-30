@@ -72,12 +72,14 @@ type rec paymentMethodsManagementElementsType = {
 
 type elementsContextType = {options: Dict.t<JSON.t>}
 type confirmPaymentParams = {return_url: string}
+
 type switchContextType = {
   clientSecret: string,
   confirmPayment: JSON.t => Promise.t<JSON.t>,
   confirmCardPayment: (string, option<JSON.t>, option<JSON.t>) => Promise.t<JSON.t>,
   retrievePaymentIntent: string => Promise.t<JSON.t>,
   paymentRequest: JSON.t => JSON.t,
+  initPaymentSession: JSON.t => OrcaJs.initPaymentSession,
   completeUpdateIntent: string => promise<JSON.t>,
   initiateUpdateIntent: unit => promise<JSON.t>,
   confirmTokenization: JSON.t => Promise.t<JSON.t>,
@@ -107,12 +109,22 @@ let paymentRequest = options => {
   options
 }
 
+let defaultGetCustomerSavedPaymentMethods = () => {
+  Promise.resolve(JSON.Encode.null)
+}
+
+let defaultInitPaymentSession: OrcaJs.initPaymentSession = {
+  getCustomerSavedPaymentMethods: defaultGetCustomerSavedPaymentMethods,
+  updateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
+}
+
 let defaultSwitchContext = {
   clientSecret: "",
   confirmPayment: confirmPaymentFn,
   confirmCardPayment: confirmCardPaymentFn,
   retrievePaymentIntent: retrievePaymentIntentFn,
   paymentRequest,
+  initPaymentSession: _ => defaultInitPaymentSession,
   completeUpdateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
   initiateUpdateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
   confirmTokenization: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
