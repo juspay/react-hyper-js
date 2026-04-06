@@ -2,6 +2,15 @@
   "name": "@juspay-tech/react-hyper-js",
   "version": "2.0.0",
   "main": "dist/bundle.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/bundle.js",
+      "require": "./dist/bundle.js",
+      "default": "./dist/bundle.js"
+    }
+  },
   "files": [
     "dist/",
     "README.md",
@@ -24,7 +33,7 @@
     "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack --mode production && cp src/index.d.ts dist/index.d.ts",
     "re:build": "rescript",
     "re:start": "rescript build -w",
     "re:format": "rescript format -all",
