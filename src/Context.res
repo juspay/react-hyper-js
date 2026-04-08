@@ -60,6 +60,7 @@ type rec elementsType = {
   getElement: string => option<OrcaJs.paymentElement>,
   fetchUpdates: unit => Promise.t<JSON.t>,
   create: (string, JSON.t) => OrcaJs.paymentElement, // return a react component instead by doing new Payment Element.
+  updateIntent: (unit => promise<string>) => promise<JSON.t>,
 }
 
 type rec paymentMethodsManagementElementsType = {
@@ -203,6 +204,7 @@ let defaultElementsContext: elementsType = {
   getElement,
   fetchUpdates,
   create,
+  updateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
 }
 
 let elementsContext = React.createContext(defaultElementsContext)

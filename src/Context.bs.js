@@ -127,12 +127,17 @@ var defaultElementsContext_options = {
   loader: ""
 };
 
+function defaultElementsContext_updateIntent(param) {
+  return Promise.resolve({});
+}
+
 var defaultElementsContext = {
   options: defaultElementsContext_options,
   update: update,
   getElement: getElement,
   fetchUpdates: fetchUpdates,
-  create: create
+  create: create,
+  updateIntent: defaultElementsContext_updateIntent
 };
 
 var elementsContext = React.createContext(defaultElementsContext);
