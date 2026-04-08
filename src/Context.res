@@ -60,6 +60,7 @@ type rec elementsType = {
   getElement: string => option<OrcaJs.paymentElement>,
   fetchUpdates: unit => Promise.t<JSON.t>,
   create: (string, JSON.t) => OrcaJs.paymentElement, // return a react component instead by doing new Payment Element.
+  updateIntent: (unit => promise<string>) => promise<JSON.t>,
 }
 
 type rec paymentMethodsManagementElementsType = {
@@ -115,6 +116,7 @@ let defaultGetCustomerSavedPaymentMethods = () => {
 
 let defaultInitPaymentSession: OrcaJs.initPaymentSession = {
   getCustomerSavedPaymentMethods: defaultGetCustomerSavedPaymentMethods,
+  updateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
 }
 
 let defaultSwitchContext = {
@@ -202,6 +204,7 @@ let defaultElementsContext: elementsType = {
   getElement,
   fetchUpdates,
   create,
+  updateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
 }
 
 let elementsContext = React.createContext(defaultElementsContext)
@@ -225,6 +228,22 @@ let paymentMethodsManagementElementsOptionObjMapper = (options: JSON.t) => {
     ->Option.getOr(Dict.make()),
     loader: dict->getString("loader", "auto"),
   }
+}
+
+type paymentSessionContextType = {
+  getCustomerSavedPaymentMethods: unit => promise<JSON.t>,
+  updateIntent: (unit => promise<string>) => promise<JSON.t>,
+}
+
+let defaultPaymentSessionContext: paymentSessionContextType = {
+  getCustomerSavedPaymentMethods: () => Promise.resolve(Dict.make()->JSON.Encode.object),
+  updateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
+}
+
+let paymentSessionContext = React.createContext(defaultPaymentSessionContext)
+
+module PaymentSessionContextProvider = {
+  let make = React.Context.provider(paymentSessionContext)
 }
 
 let defaultPaymentMethodsManagementElementsContext: paymentMethodsManagementElementsType = {

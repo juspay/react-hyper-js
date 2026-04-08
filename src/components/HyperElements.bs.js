@@ -17,6 +17,10 @@ function HyperElements(props) {
         return Context.defaultElementsContext;
       });
   var setElementsState = match$1[1];
+  var match$2 = React.useState(function () {
+        return Context.defaultPaymentSessionContext;
+      });
+  var setPaymentSessionState = match$2[1];
   React.useEffect((function () {
           ((function (__x) {
                   return Js_promise.then_((function (switchInstance) {
@@ -25,12 +29,14 @@ function HyperElements(props) {
                                 var newElemValues_getElement = orcaElementsConfig.getElement;
                                 var newElemValues_fetchUpdates = orcaElementsConfig.fetchUpdates;
                                 var newElemValues_create = orcaElementsConfig.create;
+                                var newElemValues_updateIntent = orcaElementsConfig.updateIntent;
                                 var newElemValues = {
                                   options: elementOptions,
                                   update: newElemValues_update,
                                   getElement: newElemValues_getElement,
                                   fetchUpdates: newElemValues_fetchUpdates,
-                                  create: newElemValues_create
+                                  create: newElemValues_create,
+                                  updateIntent: newElemValues_updateIntent
                                 };
                                 var switchValClone_clientSecret = elementOptions.clientSecret;
                                 var switchValClone_confirmPayment = switchInstance.confirmPayment;
@@ -52,11 +58,21 @@ function HyperElements(props) {
                                   initiateUpdateIntent: switchValClone_initiateUpdateIntent,
                                   confirmTokenization: switchValClone_confirmTokenization
                                 };
+                                var paymentSession = switchInstance.initPaymentSession(options);
+                                var newPaymentSessionValues_getCustomerSavedPaymentMethods = paymentSession.getCustomerSavedPaymentMethods;
+                                var newPaymentSessionValues_updateIntent = paymentSession.updateIntent;
+                                var newPaymentSessionValues = {
+                                  getCustomerSavedPaymentMethods: newPaymentSessionValues_getCustomerSavedPaymentMethods,
+                                  updateIntent: newPaymentSessionValues_updateIntent
+                                };
                                 setSwitchState(function (param) {
                                       return switchValClone;
                                     });
                                 setElementsState(function (param) {
                                       return newElemValues;
+                                    });
+                                setPaymentSessionState(function (param) {
+                                      return newPaymentSessionValues;
                                     });
                                 return Promise.resolve(switchValClone);
                               }), __x);
@@ -66,7 +82,10 @@ function HyperElements(props) {
               value: match[0],
               children: JsxRuntime.jsx(Context.ElementsContextProvider.make, {
                     value: match$1[0],
-                    children: props.children
+                    children: JsxRuntime.jsx(Context.PaymentSessionContextProvider.make, {
+                          value: match$2[0],
+                          children: props.children
+                        })
                   })
             });
 }

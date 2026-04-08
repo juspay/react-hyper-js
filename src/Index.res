@@ -16,6 +16,15 @@ let useStripe = () => {
   Console.warn("useStripe() is deprecated. Use useHyper() instead")
   useHyper()
 }
+
+let usePaymentSession = () => {
+  React.useContext(Context.paymentSessionContext)
+}
+
+let initPaymentSession = async (hyperPromise: promise<OrcaJs.switchInstance>, options: JSON.t) => {
+  let hyper = await hyperPromise
+  hyper.initPaymentSession(options)
+}
 let useWidgets = () => {
   React.useContext(Context.elementsContext)
 }

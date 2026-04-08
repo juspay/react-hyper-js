@@ -3,6 +3,9 @@ let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: JSON.
   let elementOptions = options->Context.elementsOptionObjMapper
   let (switchState, setSwitchState) = React.useState(() => Context.defaultSwitchContext)
   let (elementsState, setElementsState) = React.useState(() => Context.defaultElementsContext)
+  let (paymentSessionState, setPaymentSessionState) = React.useState(() =>
+    Context.defaultPaymentSessionContext
+  )
 
   React.useEffect0(() => {
     hyper
@@ -14,6 +17,7 @@ let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: JSON.
         getElement: orcaElementsConfig.getElement,
         fetchUpdates: orcaElementsConfig.fetchUpdates,
         create: orcaElementsConfig.create,
+        updateIntent: orcaElementsConfig.updateIntent,
       }
       let switchValClone: Context.switchContextType = {
         confirmPayment: switchInstance.confirmPayment,
@@ -27,8 +31,15 @@ let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: JSON.
         confirmTokenization: switchInstance.confirmTokenization,
       }
 
+      let paymentSession = switchInstance.initPaymentSession(options)
+      let newPaymentSessionValues: Context.paymentSessionContextType = {
+        getCustomerSavedPaymentMethods: paymentSession.getCustomerSavedPaymentMethods,
+        updateIntent: paymentSession.updateIntent,
+      }
+
       setSwitchState(_ => switchValClone)
       setElementsState(_ => newElemValues)
+      setPaymentSessionState(_ => newPaymentSessionValues)
       Promise.resolve(switchValClone)
     }, _)
     ->ignore
@@ -37,7 +48,9 @@ let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: JSON.
 
   <Context.SwitchContextProvider value={switchState}>
     <Context.ElementsContextProvider value={elementsState}>
-      {children}
+      <Context.PaymentSessionContextProvider value={paymentSessionState}>
+        {children}
+      </Context.PaymentSessionContextProvider>
     </Context.ElementsContextProvider>
   </Context.SwitchContextProvider>
 }
