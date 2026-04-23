@@ -60,7 +60,7 @@ type rec elementsType = {
   getElement: string => option<OrcaJs.paymentElement>,
   fetchUpdates: unit => Promise.t<JSON.t>,
   create: (string, JSON.t) => OrcaJs.paymentElement, // return a react component instead by doing new Payment Element.
-  updateIntent: (unit => promise<string>) => promise<JSON.t>,
+  updateIntent: (unit => promise<JSON.t>) => promise<JSON.t>,
 }
 
 type rec paymentMethodsManagementElementsType = {
@@ -232,7 +232,7 @@ let paymentMethodsManagementElementsOptionObjMapper = (options: JSON.t) => {
 
 type paymentSessionContextType = {
   getCustomerSavedPaymentMethods: unit => promise<JSON.t>,
-  updateIntent: (unit => promise<string>) => promise<JSON.t>,
+  updateIntent: (unit => promise<JSON.t>) => promise<JSON.t>,
 }
 
 let defaultPaymentSessionContext: paymentSessionContextType = {
