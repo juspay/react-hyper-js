@@ -1,6 +1,6 @@
 {
   "name": "@juspay-tech/react-hyper-js",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "main": "dist/bundle.js",
   "files": [
     "dist/",
@@ -24,18 +24,27 @@
     "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "scripts": {
+    "pre-commit": "bash .githooks/commit-msg",
     "build": "webpack --mode production",
     "re:build": "rescript",
     "re:start": "rescript build -w",
     "re:format": "rescript format -all",
     "re:clean": "rescript clean",
-    "publish:public": "npm publish --access public"
+    "publish:public": "npm publish --access public",
+    "setup:hooks": "git config core.hooksPath .githooks && chmod +x .githooks/commit-msg",
+    "postinstall": "npm run setup:hooks"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pre-commit"
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.27.4",
     "@babel/preset-env": "^7.27.2",
     "@babel/preset-react": "^7.27.1",
     "babel-loader": "^10.0.0",
+    "husky": "^9.1.7",
     "rescript": "^11.1.0",
     "webpack": "^5.99.9",
     "webpack-cli": "^6.0.1"
