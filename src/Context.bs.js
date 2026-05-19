@@ -22,7 +22,7 @@ function paymentRequest(options) {
   return options;
 }
 
-function defaultGetCustomerSavedPaymentMethods() {
+function defaultGetCustomerSavedPaymentMethods(_options) {
   return Promise.resolve(null);
 }
 
@@ -159,7 +159,7 @@ function paymentMethodsManagementElementsOptionObjMapper(options) {
         };
 }
 
-function defaultPaymentSessionContext_getCustomerSavedPaymentMethods() {
+function defaultPaymentSessionContext_getCustomerSavedPaymentMethods(_options) {
   return Promise.resolve({});
 }
 

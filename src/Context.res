@@ -110,7 +110,7 @@ let paymentRequest = options => {
   options
 }
 
-let defaultGetCustomerSavedPaymentMethods = () => {
+let defaultGetCustomerSavedPaymentMethods = _options => {
   Promise.resolve(JSON.Encode.null)
 }
 
@@ -231,12 +231,12 @@ let paymentMethodsManagementElementsOptionObjMapper = (options: JSON.t) => {
 }
 
 type paymentSessionContextType = {
-  getCustomerSavedPaymentMethods: unit => promise<JSON.t>,
+  getCustomerSavedPaymentMethods: option<JSON.t> => promise<JSON.t>,
   updateIntent: (unit => promise<JSON.t>) => promise<JSON.t>,
 }
 
 let defaultPaymentSessionContext: paymentSessionContextType = {
-  getCustomerSavedPaymentMethods: () => Promise.resolve(Dict.make()->JSON.Encode.object),
+  getCustomerSavedPaymentMethods: _options => Promise.resolve(Dict.make()->JSON.Encode.object),
   updateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
 }
 
