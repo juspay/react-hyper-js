@@ -65,7 +65,7 @@ type getCustomerSavedPaymentMethods = {
 }
 
 type initPaymentSession = {
-  getCustomerSavedPaymentMethods: unit => Promise.t<JSON.t>,
+  getCustomerSavedPaymentMethods: option<JSON.t> => Promise.t<JSON.t>,
   updateIntent: (unit => promise<JSON.t>) => promise<JSON.t>,
 }
 

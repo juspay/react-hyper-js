@@ -1,6 +1,6 @@
 {
   "name": "@juspay-tech/react-hyper-js",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "main": "dist/bundle.js",
   "files": [
     "dist/",
