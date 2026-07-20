@@ -26,28 +26,28 @@ let \"HyperElements": HyperElements.props<
   RescriptCore.Promise.t<OrcaJs.switchInstance>,
   RescriptCore.JSON.t,
 > => React.element
-let \"PaymentElement": PaymentElement.props<
-  string,
-  RescriptCore.JSON.t,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  unit => RescriptCore.Promise.t<unit>,
-> => React.element
-let \"UnifiedCheckout": PaymentElement.props<
-  string,
-  RescriptCore.JSON.t,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  unit => RescriptCore.Promise.t<unit>,
-> => React.element
+let \"PaymentElement": React.component<{
+  "id": string,
+  "options": RescriptCore.JSON.t,
+  "onChange": option<option<RescriptCore.JSON.t> => unit>,
+  "onReady": option<option<RescriptCore.JSON.t> => unit>,
+  "onFocus": option<option<RescriptCore.JSON.t> => unit>,
+  "onBlur": option<option<RescriptCore.JSON.t> => unit>,
+  "onClick": option<option<RescriptCore.JSON.t> => unit>,
+  "onPaymentComplete": option<option<RescriptCore.JSON.t> => unit>,
+  "onPaymentButtonClick": unit => RescriptCore.Promise.t<unit>,
+}>
+let \"UnifiedCheckout": React.component<{
+  "id": string,
+  "options": RescriptCore.JSON.t,
+  "onChange": option<option<RescriptCore.JSON.t> => unit>,
+  "onReady": option<option<RescriptCore.JSON.t> => unit>,
+  "onFocus": option<option<RescriptCore.JSON.t> => unit>,
+  "onBlur": option<option<RescriptCore.JSON.t> => unit>,
+  "onClick": option<option<RescriptCore.JSON.t> => unit>,
+  "onPaymentComplete": option<option<RescriptCore.JSON.t> => unit>,
+  "onPaymentButtonClick": unit => RescriptCore.Promise.t<unit>,
+}>
 let \"CardElement": CardElement.props<
   string,
   RescriptCore.JSON.t,

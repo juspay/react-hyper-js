@@ -1,3 +1,5 @@
+type paymentElementHandle = {confirmPayment: JSON.t => Promise.t<JSON.t>}
+
 @react.component
 let make = (
   ~id="payment-Element",
@@ -10,12 +12,21 @@ let make = (
   ~onClick,
   ~onPaymentComplete,
   ~onPaymentButtonClick,
+  ~imperativeRef: Nullable.t<React.ref<paymentElementHandle>>=Nullable.null,
 ) => {
   let hyperSwitch = React.useContext(Context.switchContext)
   let elementsState = React.useContext(Context.elementsContext)
   let divRef = React.useRef(Nullable.null)
 
   let paymentElement = elementsState.create(componentType, options)
+
+  React.useImperativeHandle1(
+    imperativeRef,
+    () => {
+      confirmPayment: hyperSwitch.confirmPayment,
+    },
+    [hyperSwitch],
+  )
 
   React.useEffect2(() => {
     let paymentElement = elementsState.create(componentType, options)
