@@ -1,13 +1,13 @@
 @react.component
 let make = (~children, ~stripe: Promise.t<OrcaJs.switchInstance>, ~options: JSON.t) => {
-  let elementOptions = options->Context.elementsOptionObjMapper
   let (switchState, setSwitchState) = React.useState(() => Context.defaultSwitchContext)
   let (elementsState, setElementsState) = React.useState(() => Context.defaultElementsContext)
 
-  React.useEffect0(() => {
-    stripe
-    ->Js.Promise.then_((switchInstance: OrcaJs.switchInstance) => {
-      let orcaElementsConfig = switchInstance.elements(options)
+  React.useEffect(() => {
+    Promise.all2((stripe, options->Utils.normalizeToPromise))
+    ->Promise.then(((switchInstance: OrcaJs.switchInstance, resolvedOptions)) => {
+      let elementOptions = resolvedOptions->Context.elementsOptionObjMapper
+      let orcaElementsConfig = switchInstance.elements(resolvedOptions)
       let newElemValues: Context.elementsType = {
         options: elementOptions,
         update: orcaElementsConfig.update,
@@ -27,14 +27,17 @@ let make = (~children, ~stripe: Promise.t<OrcaJs.switchInstance>, ~options: JSON
         initiateUpdateIntent: switchInstance.initiateUpdateIntent,
         confirmTokenization: switchInstance.confirmTokenization,
       }
-
       setSwitchState(_ => switchValClone)
       setElementsState(_ => newElemValues)
       Promise.resolve(switchValClone)
-    }, _)
+    })
+    ->Promise.catch(err => {
+      Console.warn2("[Elements] Failed to initialise hyper promise:", err)
+      Promise.resolve(Context.defaultSwitchContext)
+    })
     ->ignore
     None
-  })
+  }, (stripe, options))
 
   <Context.SwitchContextProvider value={switchState}>
     <Context.ElementsContextProvider value={elementsState}>
