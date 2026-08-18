@@ -1,3 +1,4 @@
+open OrcaJs
 let make = React.forwardRef((
   {
     id,
@@ -9,8 +10,8 @@ let make = React.forwardRef((
     onClick,
     onPaymentComplete,
     onPaymentButtonClick,
-  }: OrcaJs.paymentElementProps,
-  ref_,
+  },
+  imperativeRef,
 ) => {
   <PaymentElementsWrapper
     id
@@ -23,6 +24,6 @@ let make = React.forwardRef((
     componentType="payment"
     onPaymentComplete
     onPaymentButtonClick
-    imperativeRef=ref_
+    imperativeRef
   />
 })

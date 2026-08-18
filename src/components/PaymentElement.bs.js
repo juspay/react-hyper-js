@@ -5,7 +5,7 @@ import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as JsxRuntime from "react/jsx-runtime";
 import * as PaymentElementsWrapper from "./PaymentElementsWrapper.bs.js";
 
-var make = React.forwardRef(function (param, ref_) {
+var make = React.forwardRef(function (param, imperativeRef) {
       return JsxRuntime.jsx(PaymentElementsWrapper.make, {
                   id: param.id,
                   options: param.options,
@@ -17,7 +17,7 @@ var make = React.forwardRef(function (param, ref_) {
                   onClick: param.onClick,
                   onPaymentComplete: param.onPaymentComplete,
                   onPaymentButtonClick: param.onPaymentButtonClick,
-                  imperativeRef: Caml_option.some(ref_)
+                  imperativeRef: Caml_option.some(imperativeRef)
                 });
     });
 

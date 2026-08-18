@@ -1,3 +1,4 @@
+open OrcaJs
 @react.component
 let make = (
   ~id="payment-Element",
@@ -10,7 +11,7 @@ let make = (
   ~onClick,
   ~onPaymentComplete,
   ~onPaymentButtonClick,
-  ~imperativeRef: Nullable.t<React.ref<OrcaJs.paymentElementHandle>>=Nullable.null,
+  ~imperativeRef: Nullable.t<React.ref<paymentElementHandle>>=Nullable.null,
 ) => {
   let hyperSwitch = React.useContext(Context.switchContext)
   let elementsState = React.useContext(Context.elementsContext)
