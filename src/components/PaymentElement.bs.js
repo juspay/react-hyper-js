@@ -5,18 +5,18 @@ import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as JsxRuntime from "react/jsx-runtime";
 import * as PaymentElementsWrapper from "./PaymentElementsWrapper.bs.js";
 
-var make = React.forwardRef(function (props, ref_) {
+var make = React.forwardRef(function (param, ref_) {
       return JsxRuntime.jsx(PaymentElementsWrapper.make, {
-                  id: props.id,
-                  options: props.options,
-                  onChange: props.onChange,
-                  onReady: props.onReady,
+                  id: param.id,
+                  options: param.options,
+                  onChange: param.onChange,
+                  onReady: param.onReady,
                   componentType: "payment",
-                  onFocus: props.onFocus,
-                  onBlur: props.onBlur,
-                  onClick: props.onClick,
-                  onPaymentComplete: props.onPaymentComplete,
-                  onPaymentButtonClick: props.onPaymentButtonClick,
+                  onFocus: param.onFocus,
+                  onBlur: param.onBlur,
+                  onClick: param.onClick,
+                  onPaymentComplete: param.onPaymentComplete,
+                  onPaymentButtonClick: param.onPaymentButtonClick,
                   imperativeRef: Caml_option.some(ref_)
                 });
     });

@@ -93,3 +93,5 @@ type paymentElementProps = {
   onPaymentComplete: option<option<JSON.t> => unit>,
   onPaymentButtonClick: unit => Promise.t<unit>,
 }
+
+type paymentElementHandle = {confirmPayment: JSON.t => Promise.t<JSON.t>}

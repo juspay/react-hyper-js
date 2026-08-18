@@ -1,15 +1,28 @@
-let make = React.forwardRef((props: OrcaJs.paymentElementProps, ref_) => {
+let make = React.forwardRef((
+  {
+    id,
+    options,
+    onChange,
+    onReady,
+    onFocus,
+    onBlur,
+    onClick,
+    onPaymentComplete,
+    onPaymentButtonClick,
+  }: OrcaJs.paymentElementProps,
+  ref_,
+) => {
   <PaymentElementsWrapper
-    id={props.id}
-    options={props.options}
-    onChange={props.onChange}
-    onReady={props.onReady}
-    onFocus={props.onFocus}
-    onBlur={props.onBlur}
-    onClick={props.onClick}
+    id
+    options
+    onChange
+    onReady
+    onFocus
+    onBlur
+    onClick
     componentType="payment"
-    onPaymentComplete={props.onPaymentComplete}
-    onPaymentButtonClick={props.onPaymentButtonClick}
+    onPaymentComplete
+    onPaymentButtonClick
     imperativeRef=ref_
   />
 })
