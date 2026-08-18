@@ -1,4 +1,4 @@
-let make = React.forwardRef((props: Types.paymentElementProps, ref_) => {
+let make = React.forwardRef((props: OrcaJs.paymentElementProps, ref_) => {
   <PaymentElementsWrapper
     id={props.id}
     options={props.options}

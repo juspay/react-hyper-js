@@ -26,8 +26,8 @@ let \"HyperElements": HyperElements.props<
   RescriptCore.Promise.t<OrcaJs.switchInstance>,
   RescriptCore.JSON.t,
 > => React.element
-let \"PaymentElement": React.component<Types.paymentElementProps>
-let \"UnifiedCheckout": React.component<Types.paymentElementProps>
+let \"PaymentElement": React.component<OrcaJs.paymentElementProps>
+let \"UnifiedCheckout": React.component<OrcaJs.paymentElementProps>
 let \"CardElement": CardElement.props<
   string,
   RescriptCore.JSON.t,
