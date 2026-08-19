@@ -6,6 +6,7 @@ import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as JsxRuntime from "react/jsx-runtime";
 
 function PaymentElementsWrapper(props) {
+  var __imperativeRef = props.imperativeRef;
   var onPaymentButtonClick = props.onPaymentButtonClick;
   var onPaymentComplete = props.onPaymentComplete;
   var onClick = props.onClick;
@@ -17,10 +18,16 @@ function PaymentElementsWrapper(props) {
   var options = props.options;
   var __id = props.id;
   var id = __id !== undefined ? __id : "payment-Element";
+  var imperativeRef = __imperativeRef !== undefined ? Caml_option.valFromOption(__imperativeRef) : null;
   var hyperSwitch = React.useContext(Context.switchContext);
   var elementsState = React.useContext(Context.elementsContext);
   var divRef = React.useRef(null);
   var paymentElement = elementsState.create(componentType, options);
+  React.useImperativeHandle(imperativeRef, (function () {
+          return {
+                  confirmPayment: hyperSwitch.confirmPayment
+                };
+        }), [hyperSwitch]);
   React.useEffect((function () {
           var paymentElement = elementsState.create(componentType, options);
           paymentElement.mount("#orca-elements-payment-element-" + id);

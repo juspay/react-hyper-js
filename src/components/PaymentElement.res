@@ -1,14 +1,17 @@
-@react.component
-let make = (
-  ~id,
-  ~options: JSON.t,
-  ~onChange,
-  ~onReady,
-  ~onFocus,
-  ~onBlur,
-  ~onClick,
-  ~onPaymentComplete,
-  ~onPaymentButtonClick,
+open OrcaJs
+let make = React.forwardRef((
+  {
+    id,
+    options,
+    onChange,
+    onReady,
+    onFocus,
+    onBlur,
+    onClick,
+    onPaymentComplete,
+    onPaymentButtonClick,
+  },
+  imperativeRef,
 ) => {
   <PaymentElementsWrapper
     id
@@ -21,5 +24,6 @@ let make = (
     componentType="payment"
     onPaymentComplete
     onPaymentButtonClick
+    imperativeRef
   />
-}
+})
