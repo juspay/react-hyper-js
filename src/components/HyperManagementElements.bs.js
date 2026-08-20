@@ -64,7 +64,7 @@ function HyperManagementElements(props) {
                         });
                     return Promise.resolve(switchValClone);
                   }), (function (err) {
-                  console.warn("[HyperManagementElements] Failed to initialise hyper promise:", err);
+                  console.error("[HyperManagementElements] Failed to initialise hyper promise:", err);
                   return Promise.resolve(Context.defaultSwitchContext);
                 }));
         }), [

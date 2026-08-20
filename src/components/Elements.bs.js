@@ -67,7 +67,7 @@ function Elements(props) {
                         });
                     return Promise.resolve(switchValClone);
                   }), (function (err) {
-                  console.warn("[Elements] Failed to initialise hyper promise:", err);
+                  console.error("[Elements] Failed to initialise hyper promise:", err);
                   return Promise.resolve(Context.defaultSwitchContext);
                 }));
         }), [

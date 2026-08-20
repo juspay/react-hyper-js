@@ -35,7 +35,7 @@ let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: JSON.
       Promise.resolve(switchValClone)
     })
     ->Promise.catch(err => {
-      Console.warn2("[HyperManagementElements] Failed to initialise hyper promise:", err)
+      Console.error2("[HyperManagementElements] Failed to initialise hyper promise:", err)
       Promise.resolve(Context.defaultSwitchContext)
     })
     ->ignore

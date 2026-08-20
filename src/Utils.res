@@ -1,10 +1,9 @@
 // Normalises options to a promise regardless of whether the caller passed
 // a plain JSON object (backward compat) or a Promise<JSON> (new pattern).
-let normalizeToPromise: 'a => Promise.t<JSON.t> = %raw(`
-  function(value) {
-    if (value !== null && typeof value === 'object' && typeof value.then === 'function') {
-      return value
-    }
-    return Promise.resolve(value)
+let normalizeToPromise = (value): Promise.t<JSON.t> => {
+  let dict: dict<unknown> = value->Obj.magic
+  switch dict->Dict.get("then") {
+  | Some(_) => value->Obj.magic
+  | None => Promise.resolve(value->Obj.magic)
   }
-`)
+}
