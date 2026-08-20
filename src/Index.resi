@@ -26,28 +26,8 @@ let \"HyperElements": HyperElements.props<
   RescriptCore.Promise.t<OrcaJs.switchInstance>,
   RescriptCore.JSON.t,
 > => React.element
-let \"PaymentElement": PaymentElement.props<
-  string,
-  RescriptCore.JSON.t,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  unit => RescriptCore.Promise.t<unit>,
-> => React.element
-let \"UnifiedCheckout": PaymentElement.props<
-  string,
-  RescriptCore.JSON.t,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  unit => RescriptCore.Promise.t<unit>,
-> => React.element
+let \"PaymentElement": React.component<OrcaJs.paymentElementProps>
+let \"UnifiedCheckout": React.component<OrcaJs.paymentElementProps>
 let \"CardElement": CardElement.props<
   string,
   RescriptCore.JSON.t,
