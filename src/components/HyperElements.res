@@ -1,16 +1,16 @@
 @react.component
-let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: JSON.t) => {
-  let elementOptions = options->Context.elementsOptionObjMapper
+let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: 'a) => {
   let (switchState, setSwitchState) = React.useState(() => Context.defaultSwitchContext)
   let (elementsState, setElementsState) = React.useState(() => Context.defaultElementsContext)
   let (paymentSessionState, setPaymentSessionState) = React.useState(() =>
     Context.defaultPaymentSessionContext
   )
 
-  React.useEffect0(() => {
-    hyper
-    ->Js.Promise.then_((switchInstance: OrcaJs.switchInstance) => {
-      let orcaElementsConfig = switchInstance.elements(options)
+  React.useEffect(() => {
+    Promise.all2((hyper, options->Utils.normalizeToPromise))
+    ->Promise.then(((switchInstance: OrcaJs.switchInstance, resolvedOptions)) => {
+      let elementOptions = resolvedOptions->Context.elementsOptionObjMapper
+      let orcaElementsConfig = switchInstance.elements(resolvedOptions)
       let newElemValues: Context.elementsType = {
         options: elementOptions,
         update: orcaElementsConfig.update,
@@ -31,7 +31,7 @@ let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: JSON.
         confirmTokenization: switchInstance.confirmTokenization,
       }
 
-      let paymentSession = switchInstance.initPaymentSession(options)
+      let paymentSession = switchInstance.initPaymentSession(resolvedOptions)
       let newPaymentSessionValues: Context.paymentSessionContextType = {
         getCustomerSavedPaymentMethods: paymentSession.getCustomerSavedPaymentMethods,
         updateIntent: paymentSession.updateIntent,
@@ -41,10 +41,14 @@ let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: JSON.
       setElementsState(_ => newElemValues)
       setPaymentSessionState(_ => newPaymentSessionValues)
       Promise.resolve(switchValClone)
-    }, _)
+    })
+    ->Promise.catch(err => {
+      Console.error2("[HyperElements] Failed to initialise hyper promise:", err)
+      Promise.resolve(Context.defaultSwitchContext)
+    })
     ->ignore
     None
-  })
+  }, (hyper, options))
 
   <Context.SwitchContextProvider value={switchState}>
     <Context.ElementsContextProvider value={elementsState}>
