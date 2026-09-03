@@ -15,7 +15,6 @@ var make = React.forwardRef(function (param, imperativeRef) {
                   onReady: param.onReady,
                   onFocus: param.onFocus,
                   onBlur: param.onBlur,
-                  onError: param.onError,
                   imperativeRef: Caml_option.some(imperativeRef)
                 });
     });

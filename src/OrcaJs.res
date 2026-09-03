@@ -169,9 +169,6 @@ type cardFormProps = {
   children: React.element,
   onChange: option<JSON.t => unit>,
   onReady: option<JSON.t => unit>,
-  onUnready: option<JSON.t => unit>,
-  onError: option<JSON.t => unit>,
-  onConfirmDispatched: option<JSON.t => unit>,
 }
 
 type cardFieldProps = {
@@ -182,7 +179,6 @@ type cardFieldProps = {
   onReady: option<JSON.t => unit>,
   onFocus: option<JSON.t => unit>,
   onBlur: option<JSON.t => unit>,
-  onError: option<JSON.t => unit>,
 }
 
 let makeErrorResponse = (code: string, message: string): JSON.t => {

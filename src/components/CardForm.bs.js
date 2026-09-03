@@ -7,9 +7,6 @@ import * as Core__Option from "@rescript/core/src/Core__Option.bs.js";
 import * as JsxRuntime from "react/jsx-runtime";
 
 var make = React.forwardRef(function (param, imperativeRef) {
-      var onConfirmDispatched = param.onConfirmDispatched;
-      var onError = param.onError;
-      var onUnready = param.onUnready;
       var onReady = param.onReady;
       var onChange = param.onChange;
       var elementsState = React.useContext(Context.elementsContext);
@@ -77,15 +74,6 @@ var make = React.forwardRef(function (param, imperativeRef) {
                     }));
               Core__Option.forEach(onReady, (function (cb) {
                       cardFormValue.on("ready", cb);
-                    }));
-              Core__Option.forEach(onUnready, (function (cb) {
-                      cardFormValue.on("unready", cb);
-                    }));
-              Core__Option.forEach(onError, (function (cb) {
-                      cardFormValue.on("error", cb);
-                    }));
-              Core__Option.forEach(onConfirmDispatched, (function (cb) {
-                      cardFormValue.on("confirmDispatched", cb);
                     }));
             }
             
