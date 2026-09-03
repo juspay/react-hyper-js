@@ -11,6 +11,7 @@ var make = React.forwardRef(function (param, imperativeRef) {
       var onError = param.onError;
       var onUnready = param.onUnready;
       var onReady = param.onReady;
+      var onChange = param.onChange;
       var elementsState = React.useContext(Context.elementsContext);
       var sessionState = React.useContext(Context.paymentMethodsSessionContext);
       var createdRef = React.useRef(false);
@@ -71,6 +72,9 @@ var make = React.forwardRef(function (param, imperativeRef) {
           ]);
       React.useEffect(function () {
             if (cardFormValue.isReady) {
+              Core__Option.forEach(onChange, (function (cb) {
+                      cardFormValue.on("change", cb);
+                    }));
               Core__Option.forEach(onReady, (function (cb) {
                       cardFormValue.on("ready", cb);
                     }));

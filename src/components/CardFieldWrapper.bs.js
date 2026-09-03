@@ -8,7 +8,6 @@ import * as JsxRuntime from "react/jsx-runtime";
 
 function CardFieldWrapper(props) {
   var __imperativeRef = props.imperativeRef;
-  var onCardFieldStatusInfo = props.onCardFieldStatusInfo;
   var onError = props.onError;
   var onBlur = props.onBlur;
   var onFocus = props.onFocus;
@@ -39,9 +38,6 @@ function CardFieldWrapper(props) {
           }));
     Core__Option.forEach(onError, (function (cb) {
             handle.on("error", cb);
-          }));
-    Core__Option.forEach(onCardFieldStatusInfo, (function (cb) {
-            handle.on("cardFieldStatusInfo", cb);
           }));
   };
   React.useEffect((function () {

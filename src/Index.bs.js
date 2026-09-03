@@ -89,8 +89,6 @@ var CardNumberField$1 = CardNumberField.make;
 
 var CardExpiryField$1 = CardExpiryField.make;
 
-var CardCvcField$1 = CardCvcField.make;
-
 var CardCVCField = CardCvcField.make;
 
 var GooglePayElement$1 = GooglePayElement.make;
@@ -132,7 +130,6 @@ export {
   CardExpiryWidget ,
   CardNumberField$1 as CardNumberField,
   CardExpiryField$1 as CardExpiryField,
-  CardCvcField$1 as CardCvcField,
   CardCVCField ,
   GooglePayElement$1 as GooglePayElement,
   ApplePayElement$1 as ApplePayElement,

@@ -47,7 +47,6 @@ let \"HyperPaymentMethodsSession" = HyperPaymentMethodsSession.make
 
 let \"CardForm" = CardForm.make
 
-
 let \"PaymentElement" = PaymentElement.make
 let \"UnifiedCheckout" = PaymentElement.make
 
@@ -67,7 +66,6 @@ let \"CardNumberField" = CardNumberField.make
 
 let \"CardExpiryField" = CardExpiryField.make
 
-let \"CardCvcField" = CardCvcField.make
 let \"CardCVCField" = CardCvcField.make
 
 let \"GooglePayElement" = GooglePayElement.make

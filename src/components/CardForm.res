@@ -1,7 +1,7 @@
 open OrcaJs
 
 let make = React.forwardRef((
-  {children, onReady, onUnready, onError, onConfirmDispatched}: cardFormProps,
+  {children, onChange, onReady, onUnready, onError, onConfirmDispatched}: cardFormProps,
   imperativeRef,
 ) => {
   let elementsState = React.useContext(Context.elementsContext)
@@ -62,6 +62,7 @@ let make = React.forwardRef((
 
   React.useEffectOnEveryRender(() => {
     if cardFormValue.isReady {
+      onChange->Option.forEach(cb => cardFormValue.on("change", cb))
       onReady->Option.forEach(cb => cardFormValue.on("ready", cb))
       onUnready->Option.forEach(cb => cardFormValue.on("unready", cb))
       onError->Option.forEach(cb => cardFormValue.on("error", cb))

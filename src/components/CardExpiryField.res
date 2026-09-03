@@ -10,7 +10,6 @@ let make = React.forwardRef((
     onFocus,
     onBlur,
     onError,
-    onCardFieldStatusInfo,
   }: cardFieldProps,
   imperativeRef,
 ) => {
@@ -24,7 +23,6 @@ let make = React.forwardRef((
     onFocus
     onBlur
     onError
-    onCardFieldStatusInfo
     imperativeRef
   />
 })

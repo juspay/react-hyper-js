@@ -11,7 +11,6 @@ let make = (
   ~onFocus: option<JSON.t => unit>,
   ~onBlur: option<JSON.t => unit>,
   ~onError: option<JSON.t => unit>,
-  ~onCardFieldStatusInfo: option<JSON.t => unit>,
   ~imperativeRef: Nullable.t<React.ref<cardFieldHandle>>=Nullable.null,
 ) => {
   let cardFormCtx = React.useContext(Context.cardFormContext)
@@ -30,7 +29,6 @@ let make = (
     onFocus->Option.forEach(cb => handle.on("focus", cb))
     onBlur->Option.forEach(cb => handle.on("blur", cb))
     onError->Option.forEach(cb => handle.on("error", cb))
-    onCardFieldStatusInfo->Option.forEach(cb => handle.on("cardFieldStatusInfo", cb))
   }
 
   React.useEffect(() => {

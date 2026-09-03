@@ -16,7 +16,6 @@ var make = React.forwardRef(function (param, imperativeRef) {
                   onFocus: param.onFocus,
                   onBlur: param.onBlur,
                   onError: param.onError,
-                  onCardFieldStatusInfo: param.onCardFieldStatusInfo,
                   imperativeRef: Caml_option.some(imperativeRef)
                 });
     });
