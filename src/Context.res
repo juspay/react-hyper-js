@@ -61,6 +61,8 @@ type rec elementsType = {
   fetchUpdates: unit => Promise.t<JSON.t>,
   create: (string, JSON.t) => OrcaJs.paymentElement, // return a react component instead by doing new Payment Element.
   updateIntent: (unit => promise<JSON.t>) => promise<JSON.t>,
+  cardForm: unit => OrcaJs.cardForm,
+  isReady: bool,
 }
 
 type rec paymentMethodsManagementElementsType = {
@@ -192,6 +194,15 @@ let fetchUpdates = () => {
 let create = (_componentType, _options) => {
   OrcaJs.defaultPaymentElement
 }
+let defaultCardForm: OrcaJs.cardForm = {
+  create: (_fieldType, _options) => OrcaJs.defaultFieldHandle,
+  on: (_str, _func) => (),
+  confirmPayment: () => Promise.resolve(OrcaJs.sdkNotReadyError()),
+  deinit: () => (),
+  update: _x => (),
+  fields: ref(Dict.make()->JSON.Encode.object),
+}
+
 let defaultElementsContext: elementsType = {
   options: {
     fonts: [],
@@ -205,12 +216,63 @@ let defaultElementsContext: elementsType = {
   fetchUpdates,
   create,
   updateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
+  cardForm: () => defaultCardForm,
+  isReady: false,
 }
 
 let elementsContext = React.createContext(defaultElementsContext)
 
 module ElementsContextProvider = {
   let make = React.Context.provider(elementsContext)
+}
+
+type cardFormContextType = {
+  createField: (string, JSON.t) => OrcaJs.fieldHandle,
+  confirmPayment: unit => Promise.t<JSON.t>,
+  tokenize: unit => Promise.t<JSON.t>,
+  on: (string, JSON.t => unit) => unit,
+  update: JSON.t => unit,
+  deinit: unit => unit,
+  getFields: unit => JSON.t,
+  isReady: bool,
+}
+
+let defaultCardFormContext: cardFormContextType = {
+  createField: (_fieldType, _options) => OrcaJs.defaultFieldHandle,
+  confirmPayment: () => Promise.resolve(OrcaJs.sdkNotReadyError()),
+  tokenize: () => Promise.resolve(OrcaJs.sdkNotReadyError()),
+  on: (_str, _func) => (),
+  update: _x => (),
+  deinit: () => (),
+  getFields: () => Dict.make()->JSON.Encode.object,
+  isReady: false,
+}
+
+let cardFormContext = React.createContext(defaultCardFormContext)
+
+module CardFormContextProvider = {
+  let make = React.Context.provider(cardFormContext)
+}
+
+type paymentMethodsSessionContextType = {
+  session: option<OrcaJs.paymentMethodsSession>,
+  isPresent: bool,
+}
+
+let defaultPaymentMethodsSessionContext: paymentMethodsSessionContextType = {
+  session: None,
+  isPresent: false,
+}
+
+let pendingPaymentMethodsSessionContext: paymentMethodsSessionContextType = {
+  ...defaultPaymentMethodsSessionContext,
+  isPresent: true,
+}
+
+let paymentMethodsSessionContext = React.createContext(defaultPaymentMethodsSessionContext)
+
+module PaymentMethodsSessionContextProvider = {
+  let make = React.Context.provider(paymentMethodsSessionContext)
 }
 
 let paymentMethodsManagementElementsOptionObjMapper = (options: JSON.t) => {

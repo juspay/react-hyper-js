@@ -3,18 +3,23 @@
 import * as React from "react";
 import * as CardCVC from "./components/CardCVC.bs.js";
 import * as Context from "./Context.bs.js";
+import * as CardForm from "./components/CardForm.bs.js";
 import * as Elements from "./components/Elements.bs.js";
 import * as CardExpiry from "./components/CardExpiry.bs.js";
 import * as CardNumber from "./components/CardNumber.bs.js";
 import * as CardElement from "./components/CardElement.bs.js";
 import * as PazeElement from "./components/PazeElement.bs.js";
+import * as CardCvcField from "./components/CardCvcField.bs.js";
 import * as HyperElements from "./components/HyperElements.bs.js";
 import * as PayPalElement from "./components/PayPalElement.bs.js";
 import * as PaymentElement from "./components/PaymentElement.bs.js";
 import * as ApplePayElement from "./components/ApplePayElement.bs.js";
+import * as CardExpiryField from "./components/CardExpiryField.bs.js";
+import * as CardNumberField from "./components/CardNumberField.bs.js";
 import * as GooglePayElement from "./components/GooglePayElement.bs.js";
 import * as ExpressCheckoutElement from "./components/ExpressCheckoutElement.bs.js";
 import * as HyperManagementElements from "./components/HyperManagementElements.bs.js";
+import * as HyperPaymentMethodsSession from "./components/HyperPaymentMethodsSession.bs.js";
 import * as PaymentMethodsManagementElement from "./components/PaymentMethodsManagementElement.bs.js";
 
 function useHyper() {
@@ -39,6 +44,14 @@ function useWidgets() {
   return React.useContext(Context.elementsContext);
 }
 
+function useCardForm() {
+  return React.useContext(Context.cardFormContext);
+}
+
+function usePaymentMethodsSession() {
+  return React.useContext(Context.paymentMethodsSessionContext);
+}
+
 function useElements() {
   console.warn("useElements() is deprecated. Use useWidgets() instead");
   return React.useContext(Context.elementsContext);
@@ -47,6 +60,10 @@ function useElements() {
 var Elements$1 = Elements.make;
 
 var HyperElements$1 = HyperElements.make;
+
+var HyperPaymentMethodsSession$1 = HyperPaymentMethodsSession.make;
+
+var CardForm$1 = CardForm.make;
 
 var PaymentElement$1 = PaymentElement.make;
 
@@ -68,6 +85,12 @@ var CardExpiryElement = CardExpiry.make;
 
 var CardExpiryWidget = CardExpiry.make;
 
+var CardNumberField$1 = CardNumberField.make;
+
+var CardExpiryField$1 = CardExpiryField.make;
+
+var CardCVCField = CardCvcField.make;
+
 var GooglePayElement$1 = GooglePayElement.make;
 
 var ApplePayElement$1 = ApplePayElement.make;
@@ -88,9 +111,13 @@ export {
   useWidgets ,
   useElements ,
   usePaymentSession ,
+  useCardForm ,
+  usePaymentMethodsSession ,
   initPaymentSession ,
   Elements$1 as Elements,
   HyperElements$1 as HyperElements,
+  HyperPaymentMethodsSession$1 as HyperPaymentMethodsSession,
+  CardForm$1 as CardForm,
   PaymentElement$1 as PaymentElement,
   UnifiedCheckout ,
   CardElement$1 as CardElement,
@@ -101,6 +128,9 @@ export {
   CardCVCWidget ,
   CardExpiryElement ,
   CardExpiryWidget ,
+  CardNumberField$1 as CardNumberField,
+  CardExpiryField$1 as CardExpiryField,
+  CardCVCField ,
   GooglePayElement$1 as GooglePayElement,
   ApplePayElement$1 as ApplePayElement,
   PazeElement$1 as PazeElement,

@@ -56,8 +56,73 @@ var defaultPaymentElement = {
   onSDKHandleClick: defaultPaymentElement_onSDKHandleClick
 };
 
+function defaultFieldHandle_mount(_string) {
+  
+}
+
+function defaultFieldHandle_unmount() {
+  
+}
+
+function defaultFieldHandle_destroy() {
+  
+}
+
+function defaultFieldHandle_update(_x) {
+  
+}
+
+function defaultFieldHandle_focus() {
+  
+}
+
+function defaultFieldHandle_blur() {
+  
+}
+
+function defaultFieldHandle_clear() {
+  
+}
+
+function defaultFieldHandle_on(_str, _func) {
+  
+}
+
+var defaultFieldHandle = {
+  mount: defaultFieldHandle_mount,
+  unmount: defaultFieldHandle_unmount,
+  destroy: defaultFieldHandle_destroy,
+  update: defaultFieldHandle_update,
+  focus: defaultFieldHandle_focus,
+  blur: defaultFieldHandle_blur,
+  clear: defaultFieldHandle_clear,
+  on: defaultFieldHandle_on
+};
+
+function makeErrorResponse(code, message) {
+  var errorDict = {};
+  errorDict["code"] = code;
+  errorDict["message"] = message;
+  var resultDict = {};
+  resultDict["status"] = "error";
+  resultDict["error"] = errorDict;
+  return resultDict;
+}
+
+function sdkNotReadyError() {
+  return makeErrorResponse("sdk_not_ready", "Hyper is not initialized yet — the card form is not ready");
+}
+
+function unsupportedOnSurfaceError(method, surface, alternative) {
+  return makeErrorResponse("unsupported_on_surface", method + "() is not available on the " + surface + " surface — use " + alternative + "()");
+}
+
 export {
   This ,
   defaultPaymentElement ,
+  defaultFieldHandle ,
+  makeErrorResponse ,
+  sdkNotReadyError ,
+  unsupportedOnSurfaceError ,
 }
 /* No side effect */

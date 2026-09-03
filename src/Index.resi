@@ -12,6 +12,8 @@ let useStripe: unit => Context.switchContextType
 let useWidgets: unit => Context.elementsType
 let useElements: unit => Context.elementsType
 let usePaymentSession: unit => Context.paymentSessionContextType
+let useCardForm: unit => Context.cardFormContextType
+let usePaymentMethodsSession: unit => Context.paymentMethodsSessionContextType
 let initPaymentSession: (
   promise<OrcaJs.switchInstance>,
   RescriptCore.JSON.t,
@@ -26,6 +28,12 @@ let \"HyperElements": HyperElements.props<
   RescriptCore.Promise.t<OrcaJs.switchInstance>,
   RescriptCore.JSON.t,
 > => React.element
+let \"HyperPaymentMethodsSession": HyperPaymentMethodsSession.props<
+  React.element,
+  RescriptCore.Promise.t<OrcaJs.switchInstance>,
+  RescriptCore.JSON.t,
+> => React.element
+let \"CardForm": React.component<OrcaJs.cardFormProps>
 let \"PaymentElement": React.component<OrcaJs.paymentElementProps>
 let \"UnifiedCheckout": React.component<OrcaJs.paymentElementProps>
 let \"CardElement": CardElement.props<
@@ -116,6 +124,9 @@ let \"CardExpiryWidget": CardExpiry.props<
   option<option<RescriptCore.JSON.t> => unit>,
   unit => RescriptCore.Promise.t<unit>,
 > => React.element
+let \"CardNumberField": React.component<OrcaJs.cardFieldProps>
+let \"CardExpiryField": React.component<OrcaJs.cardFieldProps>
+let \"CardCVCField": React.component<OrcaJs.cardFieldProps>
 let \"GooglePayElement": GooglePayElement.props<
   string,
   RescriptCore.JSON.t,
