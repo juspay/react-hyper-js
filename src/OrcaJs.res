@@ -174,7 +174,6 @@ type cardFormProps = {
 type cardFieldProps = {
   id: option<string>,
   options: option<JSON.t>,
-  className: option<string>,
   onChange: option<JSON.t => unit>,
   onReady: option<JSON.t => unit>,
   onFocus: option<JSON.t => unit>,

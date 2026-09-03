@@ -116,7 +116,6 @@ function CardFieldWrapper(props) {
         }), []);
   return JsxRuntime.jsx("div", {
               ref: Caml_option.some(divRef),
-              className: props.className,
               id: containerId
             });
 }

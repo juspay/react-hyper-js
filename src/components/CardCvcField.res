@@ -4,7 +4,6 @@ let make = React.forwardRef((
   {
     id,
     options,
-    className,
     onChange,
     onReady,
     onFocus,
@@ -16,7 +15,6 @@ let make = React.forwardRef((
     fieldType="cardCvc"
     id
     options
-    className
     onChange
     onReady
     onFocus

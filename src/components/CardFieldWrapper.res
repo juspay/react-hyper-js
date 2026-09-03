@@ -5,7 +5,6 @@ let make = (
   ~fieldType: string,
   ~id: option<string>,
   ~options: option<JSON.t>,
-  ~className: option<string>,
   ~onChange: option<JSON.t => unit>,
   ~onReady: option<JSON.t => unit>,
   ~onFocus: option<JSON.t => unit>,
@@ -72,5 +71,5 @@ let make = (
     on: (eventName, cb) => handleRef.current->Option.forEach(handle => handle.on(eventName, cb)),
   })
 
-  <div ref={divRef->ReactDOM.Ref.domRef} id={containerId} ?className />
+  <div ref={divRef->ReactDOM.Ref.domRef} id={containerId} />
 }

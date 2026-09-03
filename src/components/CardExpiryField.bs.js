@@ -10,7 +10,6 @@ var make = React.forwardRef(function (param, imperativeRef) {
                   fieldType: "cardExpiry",
                   id: param.id,
                   options: param.options,
-                  className: param.className,
                   onChange: param.onChange,
                   onReady: param.onReady,
                   onFocus: param.onFocus,
