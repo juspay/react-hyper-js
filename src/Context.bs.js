@@ -119,6 +119,39 @@ function create(_componentType, _options) {
   return OrcaJs.defaultPaymentElement;
 }
 
+function defaultCardForm_create(_fieldType, _options) {
+  return OrcaJs.defaultFieldHandle;
+}
+
+function defaultCardForm_on(_str, _func) {
+  
+}
+
+function defaultCardForm_confirmPayment() {
+  return Promise.resolve(OrcaJs.sdkNotReadyError());
+}
+
+function defaultCardForm_deinit() {
+  
+}
+
+function defaultCardForm_update(_x) {
+  
+}
+
+var defaultCardForm_fields = {
+  contents: {}
+};
+
+var defaultCardForm = {
+  create: defaultCardForm_create,
+  on: defaultCardForm_on,
+  confirmPayment: defaultCardForm_confirmPayment,
+  deinit: defaultCardForm_deinit,
+  update: defaultCardForm_update,
+  fields: defaultCardForm_fields
+};
+
 var defaultElementsContext_options = {
   fonts: [],
   locale: "",
@@ -131,13 +164,19 @@ function defaultElementsContext_updateIntent(param) {
   return Promise.resolve({});
 }
 
+function defaultElementsContext_cardForm() {
+  return defaultCardForm;
+}
+
 var defaultElementsContext = {
   options: defaultElementsContext_options,
   update: update,
   getElement: getElement,
   fetchUpdates: fetchUpdates,
   create: create,
-  updateIntent: defaultElementsContext_updateIntent
+  updateIntent: defaultElementsContext_updateIntent,
+  cardForm: defaultElementsContext_cardForm,
+  isReady: false
 };
 
 var elementsContext = React.createContext(defaultElementsContext);
@@ -146,6 +185,71 @@ var make$2 = elementsContext.Provider;
 
 var ElementsContextProvider = {
   make: make$2
+};
+
+function defaultCardFormContext_createField(_fieldType, _options) {
+  return OrcaJs.defaultFieldHandle;
+}
+
+function defaultCardFormContext_confirmPayment() {
+  return Promise.resolve(OrcaJs.sdkNotReadyError());
+}
+
+function defaultCardFormContext_tokenize() {
+  return Promise.resolve(OrcaJs.sdkNotReadyError());
+}
+
+function defaultCardFormContext_on(_str, _func) {
+  
+}
+
+function defaultCardFormContext_update(_x) {
+  
+}
+
+function defaultCardFormContext_deinit() {
+  
+}
+
+function defaultCardFormContext_getFields() {
+  return {};
+}
+
+var defaultCardFormContext = {
+  createField: defaultCardFormContext_createField,
+  confirmPayment: defaultCardFormContext_confirmPayment,
+  tokenize: defaultCardFormContext_tokenize,
+  on: defaultCardFormContext_on,
+  update: defaultCardFormContext_update,
+  deinit: defaultCardFormContext_deinit,
+  getFields: defaultCardFormContext_getFields,
+  isReady: false
+};
+
+var cardFormContext = React.createContext(defaultCardFormContext);
+
+var make$3 = cardFormContext.Provider;
+
+var CardFormContextProvider = {
+  make: make$3
+};
+
+var defaultPaymentMethodsSessionContext = {
+  session: undefined,
+  isPresent: false
+};
+
+var pendingPaymentMethodsSessionContext = {
+  session: undefined,
+  isPresent: true
+};
+
+var paymentMethodsSessionContext = React.createContext(defaultPaymentMethodsSessionContext);
+
+var make$4 = paymentMethodsSessionContext.Provider;
+
+var PaymentMethodsSessionContextProvider = {
+  make: make$4
 };
 
 function paymentMethodsManagementElementsOptionObjMapper(options) {
@@ -174,10 +278,10 @@ var defaultPaymentSessionContext = {
 
 var paymentSessionContext = React.createContext(defaultPaymentSessionContext);
 
-var make$3 = paymentSessionContext.Provider;
+var make$5 = paymentSessionContext.Provider;
 
 var PaymentSessionContextProvider = {
-  make: make$3
+  make: make$5
 };
 
 var defaultPaymentMethodsManagementElementsContext_options = {
@@ -198,10 +302,10 @@ var defaultPaymentMethodsManagementElementsContext = {
 
 var paymentMethodsManagementElementsContext = React.createContext(defaultPaymentMethodsManagementElementsContext);
 
-var make$4 = paymentMethodsManagementElementsContext.Provider;
+var make$6 = paymentMethodsManagementElementsContext.Provider;
 
 var PaymentMethodsManagementElementsContextProvider = {
-  make: make$4
+  make: make$6
 };
 
 export {
@@ -223,9 +327,17 @@ export {
   getElement ,
   fetchUpdates ,
   create ,
+  defaultCardForm ,
   defaultElementsContext ,
   elementsContext ,
   ElementsContextProvider ,
+  defaultCardFormContext ,
+  cardFormContext ,
+  CardFormContextProvider ,
+  defaultPaymentMethodsSessionContext ,
+  pendingPaymentMethodsSessionContext ,
+  paymentMethodsSessionContext ,
+  PaymentMethodsSessionContextProvider ,
   paymentMethodsManagementElementsOptionObjMapper ,
   defaultPaymentSessionContext ,
   paymentSessionContext ,

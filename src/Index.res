@@ -28,6 +28,12 @@ let initPaymentSession = async (hyperPromise: promise<OrcaJs.switchInstance>, op
 let useWidgets = () => {
   React.useContext(Context.elementsContext)
 }
+let useCardForm = () => {
+  React.useContext(Context.cardFormContext)
+}
+let usePaymentMethodsSession = () => {
+  React.useContext(Context.paymentMethodsSessionContext)
+}
 let useElements = () => {
   Console.warn("useElements() is deprecated. Use useWidgets() instead")
   useWidgets()
@@ -36,6 +42,11 @@ let useElements = () => {
 let \"Elements" = Elements.make
 
 let \"HyperElements" = HyperElements.make
+
+let \"HyperPaymentMethodsSession" = HyperPaymentMethodsSession.make
+
+let \"CardForm" = CardForm.make
+
 
 let \"PaymentElement" = PaymentElement.make
 let \"UnifiedCheckout" = PaymentElement.make
@@ -51,6 +62,13 @@ let \"CardCVCWidget" = CardCVC.make
 
 let \"CardExpiryElement" = CardExpiry.make
 let \"CardExpiryWidget" = CardExpiry.make
+
+let \"CardNumberField" = CardNumberField.make
+
+let \"CardExpiryField" = CardExpiryField.make
+
+let \"CardCvcField" = CardCvcField.make
+let \"CardCVCField" = CardCvcField.make
 
 let \"GooglePayElement" = GooglePayElement.make
 

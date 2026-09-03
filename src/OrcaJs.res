@@ -42,12 +42,61 @@ let defaultPaymentElement = {
   onSDKHandleClick: _ => (),
 }
 
+type fieldHandle = {
+  mount: string => unit,
+  unmount: unit => unit,
+  destroy: unit => unit,
+  update: JSON.t => unit,
+  focus: unit => unit,
+  blur: unit => unit,
+  clear: unit => unit,
+  on: (string, JSON.t => unit) => unit,
+}
+
+let defaultFieldHandle = {
+  mount: _string => (),
+  unmount: () => (),
+  destroy: () => (),
+  update: _x => (),
+  focus: () => (),
+  blur: () => (),
+  clear: () => (),
+  on: (_str, _func) => (),
+}
+
+type cardForm = {
+  create: (string, JSON.t) => fieldHandle,
+  on: (string, JSON.t => unit) => unit,
+  confirmPayment: unit => Promise.t<JSON.t>,
+  deinit: unit => unit,
+  update: JSON.t => unit,
+  fields: ref<JSON.t>,
+}
+
+type vaultCardForm = {
+  create: (string, JSON.t) => fieldHandle,
+  on: (string, JSON.t => unit) => unit,
+  tokenize: unit => Promise.t<JSON.t>,
+  deinit: unit => unit,
+  update: JSON.t => unit,
+  fields: ref<JSON.t>,
+}
+
+type paymentMethodsSession = {
+  cardForm: unit => vaultCardForm,
+  update: JSON.t => unit,
+  on: (string, JSON.t => unit) => unit,
+  deinit: unit => unit,
+  fields: ref<JSON.t>,
+}
+
 type element = {
   getElement: string => option<paymentElement>,
   update: JSON.t => unit,
   fetchUpdates: unit => Promise.t<JSON.t>,
   create: (string, JSON.t) => paymentElement,
   updateIntent: (unit => promise<JSON.t>) => promise<JSON.t>,
+  cardForm: unit => cardForm,
 }
 
 type confirmParams = {return_url: string}
@@ -80,6 +129,7 @@ type switchInstance = {
   completeUpdateIntent: string => promise<JSON.t>,
   initiateUpdateIntent: unit => promise<JSON.t>,
   confirmTokenization: JSON.t => Promise.t<JSON.t>,
+  paymentMethodsSession: JSON.t => paymentMethodsSession,
 }
 
 type paymentElementProps = {
@@ -95,3 +145,64 @@ type paymentElementProps = {
 }
 
 type paymentElementHandle = {confirmPayment: JSON.t => Promise.t<JSON.t>}
+type cardFormHandle = {
+  confirmPayment: unit => Promise.t<JSON.t>,
+  tokenize: unit => Promise.t<JSON.t>,
+  update: JSON.t => unit,
+  deinit: unit => unit,
+  on: (string, JSON.t => unit) => unit,
+  getFields: unit => JSON.t,
+}
+
+type cardFieldHandle = {
+  mount: string => unit,
+  unmount: unit => unit,
+  destroy: unit => unit,
+  update: JSON.t => unit,
+  focus: unit => unit,
+  blur: unit => unit,
+  clear: unit => unit,
+  on: (string, JSON.t => unit) => unit,
+}
+
+type cardFormProps = {
+  children: React.element,
+  onReady: option<JSON.t => unit>,
+  onUnready: option<JSON.t => unit>,
+  onError: option<JSON.t => unit>,
+  onConfirmDispatched: option<JSON.t => unit>,
+}
+
+type cardFieldProps = {
+  id: option<string>,
+  options: option<JSON.t>,
+  className: option<string>,
+  onChange: option<JSON.t => unit>,
+  onReady: option<JSON.t => unit>,
+  onFocus: option<JSON.t => unit>,
+  onBlur: option<JSON.t => unit>,
+  onError: option<JSON.t => unit>,
+  onCardFieldStatusInfo: option<JSON.t => unit>,
+}
+
+let makeErrorResponse = (code: string, message: string): JSON.t => {
+  let errorDict = Dict.make()
+  errorDict->Dict.set("code", code->JSON.Encode.string)
+  errorDict->Dict.set("message", message->JSON.Encode.string)
+  let resultDict = Dict.make()
+  resultDict->Dict.set("status", "error"->JSON.Encode.string)
+  resultDict->Dict.set("error", errorDict->JSON.Encode.object)
+  resultDict->JSON.Encode.object
+}
+
+let sdkNotReadyError = (): JSON.t =>
+  makeErrorResponse(
+    "sdk_not_ready",
+    "Hyper is not initialized yet — the card form is not ready",
+  )
+
+let unsupportedOnSurfaceError = (~method: string, ~surface: string, ~alternative: string): JSON.t =>
+  makeErrorResponse(
+    "unsupported_on_surface",
+    `${method}() is not available on the ${surface} surface — use ${alternative}()`,
+  )

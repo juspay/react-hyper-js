@@ -35,13 +35,16 @@ function HyperElements(props) {
                     var newElemValues_fetchUpdates = orcaElementsConfig.fetchUpdates;
                     var newElemValues_create = orcaElementsConfig.create;
                     var newElemValues_updateIntent = orcaElementsConfig.updateIntent;
+                    var newElemValues_cardForm = orcaElementsConfig.cardForm;
                     var newElemValues = {
                       options: elementOptions,
                       update: newElemValues_update,
                       getElement: newElemValues_getElement,
                       fetchUpdates: newElemValues_fetchUpdates,
                       create: newElemValues_create,
-                      updateIntent: newElemValues_updateIntent
+                      updateIntent: newElemValues_updateIntent,
+                      cardForm: newElemValues_cardForm,
+                      isReady: true
                     };
                     var switchValClone_clientSecret = elementOptions.clientSecret;
                     var switchValClone_confirmPayment = switchInstance.confirmPayment;
