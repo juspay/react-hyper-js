@@ -14,7 +14,7 @@ let make = React.forwardRef((
       if sessionState.isPresent {
         sessionState.session->Option.forEach(
           session => {
-            let group = session.cardForm()
+            let group = session.createCardForm()
             createdRef.current = true
             setCardFormValue(_ => {
               createField: group.create,
@@ -36,7 +36,7 @@ let make = React.forwardRef((
           },
         )
       } else if elementsState.isReady {
-        let group = elementsState.cardForm()
+        let group = elementsState.createCardForm()
         createdRef.current = true
         setCardFormValue(_ => {
           createField: group.create,

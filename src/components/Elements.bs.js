@@ -31,7 +31,7 @@ function Elements(props) {
                     var newElemValues_fetchUpdates = orcaElementsConfig.fetchUpdates;
                     var newElemValues_create = orcaElementsConfig.create;
                     var newElemValues_updateIntent = orcaElementsConfig.updateIntent;
-                    var newElemValues_cardForm = orcaElementsConfig.cardForm;
+                    var newElemValues_createCardForm = orcaElementsConfig.createCardForm;
                     var newElemValues = {
                       options: elementOptions,
                       update: newElemValues_update,
@@ -39,7 +39,7 @@ function Elements(props) {
                       fetchUpdates: newElemValues_fetchUpdates,
                       create: newElemValues_create,
                       updateIntent: newElemValues_updateIntent,
-                      cardForm: newElemValues_cardForm,
+                      createCardForm: newElemValues_createCardForm,
                       isReady: true
                     };
                     var switchValClone_clientSecret = elementOptions.clientSecret;

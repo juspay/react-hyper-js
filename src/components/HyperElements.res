@@ -18,7 +18,7 @@ let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: 'a) =
         fetchUpdates: orcaElementsConfig.fetchUpdates,
         create: orcaElementsConfig.create,
         updateIntent: orcaElementsConfig.updateIntent,
-        cardForm: orcaElementsConfig.cardForm,
+        createCardForm: orcaElementsConfig.createCardForm,
         isReady: true,
       }
       let switchValClone: Context.switchContextType = {

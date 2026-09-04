@@ -21,7 +21,7 @@ var make = React.forwardRef(function (param, imperativeRef) {
               if (!createdRef.current) {
                 if (sessionState.isPresent) {
                   Core__Option.forEach(sessionState.session, (function (session) {
-                          var group = session.cardForm();
+                          var group = session.createCardForm();
                           createdRef.current = true;
                           setCardFormValue(function (param) {
                                 return {
@@ -41,7 +41,7 @@ var make = React.forwardRef(function (param, imperativeRef) {
                               });
                         }));
                 } else if (elementsState.isReady) {
-                  var group = elementsState.cardForm();
+                  var group = elementsState.createCardForm();
                   createdRef.current = true;
                   setCardFormValue(function (param) {
                         return {
