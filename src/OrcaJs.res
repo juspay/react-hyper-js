@@ -83,7 +83,7 @@ type vaultCardForm = {
 }
 
 type paymentMethodsSession = {
-  cardForm: unit => vaultCardForm,
+  createCardForm: unit => vaultCardForm,
   update: JSON.t => unit,
   on: (string, JSON.t => unit) => unit,
   deinit: unit => unit,
@@ -96,7 +96,7 @@ type element = {
   fetchUpdates: unit => Promise.t<JSON.t>,
   create: (string, JSON.t) => paymentElement,
   updateIntent: (unit => promise<JSON.t>) => promise<JSON.t>,
-  cardForm: unit => cardForm,
+  createCardForm: unit => cardForm,
 }
 
 type confirmParams = {return_url: string}

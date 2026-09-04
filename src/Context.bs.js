@@ -164,7 +164,7 @@ function defaultElementsContext_updateIntent(param) {
   return Promise.resolve({});
 }
 
-function defaultElementsContext_cardForm() {
+function defaultElementsContext_createCardForm() {
   return defaultCardForm;
 }
 
@@ -175,7 +175,7 @@ var defaultElementsContext = {
   fetchUpdates: fetchUpdates,
   create: create,
   updateIntent: defaultElementsContext_updateIntent,
-  cardForm: defaultElementsContext_cardForm,
+  createCardForm: defaultElementsContext_createCardForm,
   isReady: false
 };
 
