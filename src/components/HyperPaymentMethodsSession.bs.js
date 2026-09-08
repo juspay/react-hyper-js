@@ -18,7 +18,7 @@ function HyperPaymentMethodsSession(props) {
                       hyper,
                       Utils.normalizeToPromise(options)
                     ]).then(function (param) {
-                    var session = param[0].paymentMethodsSession(param[1]);
+                    var session = param[0].initPaymentMethodsSession(param[1]);
                     var newSessionValues_session = session;
                     var newSessionValues = {
                       session: newSessionValues_session,

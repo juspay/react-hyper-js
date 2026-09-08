@@ -255,7 +255,7 @@ module CardFormContextProvider = {
 }
 
 type paymentMethodsSessionContextType = {
-  session: option<OrcaJs.paymentMethodsSession>,
+  session: option<OrcaJs.initPaymentMethodsSession>,
   isPresent: bool,
 }
 

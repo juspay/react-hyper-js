@@ -7,7 +7,7 @@ let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: JSON.
   React.useEffect(() => {
     Promise.all2((hyper, options->Utils.normalizeToPromise))
     ->Promise.then(((switchInstance: OrcaJs.switchInstance, resolvedOptions)) => {
-      let session = switchInstance.paymentMethodsSession(resolvedOptions)
+      let session = switchInstance.initPaymentMethodsSession(resolvedOptions)
       let newSessionValues: Context.paymentMethodsSessionContextType = {
         session: Some(session),
         isPresent: true,
