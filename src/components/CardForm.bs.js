@@ -10,7 +10,7 @@ var make = React.forwardRef(function (param, imperativeRef) {
       var onReady = param.onReady;
       var onChange = param.onChange;
       var elementsState = React.useContext(Context.elementsContext);
-      var sessionState = React.useContext(Context.paymentMethodsSessionContext);
+      var sessionState = React.useContext(Context.paymentMethodSessionContext);
       var createdRef = React.useRef(false);
       var match = React.useState(function () {
             return Context.defaultCardFormContext;

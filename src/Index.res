@@ -31,8 +31,8 @@ let useWidgets = () => {
 let useCardForm = () => {
   React.useContext(Context.cardFormContext)
 }
-let usePaymentMethodsSession = () => {
-  React.useContext(Context.paymentMethodsSessionContext)
+let usePaymentMethodSession = () => {
+  React.useContext(Context.paymentMethodSessionContext)
 }
 let useElements = () => {
   Console.warn("useElements() is deprecated. Use useWidgets() instead")
@@ -43,7 +43,7 @@ let \"Elements" = Elements.make
 
 let \"HyperElements" = HyperElements.make
 
-let \"HyperPaymentMethodsSession" = HyperPaymentMethodsSession.make
+let \"HyperPaymentMethodSession" = HyperPaymentMethodSession.make
 
 let \"CardForm" = CardForm.make
 

@@ -19,7 +19,7 @@ import * as CardNumberField from "./components/CardNumberField.bs.js";
 import * as GooglePayElement from "./components/GooglePayElement.bs.js";
 import * as ExpressCheckoutElement from "./components/ExpressCheckoutElement.bs.js";
 import * as HyperManagementElements from "./components/HyperManagementElements.bs.js";
-import * as HyperPaymentMethodsSession from "./components/HyperPaymentMethodsSession.bs.js";
+import * as HyperPaymentMethodSession from "./components/HyperPaymentMethodSession.bs.js";
 import * as PaymentMethodsManagementElement from "./components/PaymentMethodsManagementElement.bs.js";
 
 function useHyper() {
@@ -48,8 +48,8 @@ function useCardForm() {
   return React.useContext(Context.cardFormContext);
 }
 
-function usePaymentMethodsSession() {
-  return React.useContext(Context.paymentMethodsSessionContext);
+function usePaymentMethodSession() {
+  return React.useContext(Context.paymentMethodSessionContext);
 }
 
 function useElements() {
@@ -61,7 +61,7 @@ var Elements$1 = Elements.make;
 
 var HyperElements$1 = HyperElements.make;
 
-var HyperPaymentMethodsSession$1 = HyperPaymentMethodsSession.make;
+var HyperPaymentMethodSession$1 = HyperPaymentMethodSession.make;
 
 var CardForm$1 = CardForm.make;
 
@@ -112,11 +112,11 @@ export {
   useElements ,
   usePaymentSession ,
   useCardForm ,
-  usePaymentMethodsSession ,
+  usePaymentMethodSession ,
   initPaymentSession ,
   Elements$1 as Elements,
   HyperElements$1 as HyperElements,
-  HyperPaymentMethodsSession$1 as HyperPaymentMethodsSession,
+  HyperPaymentMethodSession$1 as HyperPaymentMethodSession,
   CardForm$1 as CardForm,
   PaymentElement$1 as PaymentElement,
   UnifiedCheckout ,

@@ -6,11 +6,11 @@ import * as Context from "../Context.bs.js";
 import * as Core__Promise from "@rescript/core/src/Core__Promise.bs.js";
 import * as JsxRuntime from "react/jsx-runtime";
 
-function HyperPaymentMethodsSession(props) {
+function HyperPaymentMethodSession(props) {
   var options = props.options;
   var hyper = props.hyper;
   var match = React.useState(function () {
-        return Context.pendingPaymentMethodsSessionContext;
+        return Context.pendingPaymentMethodSessionContext;
       });
   var setSessionState = match[1];
   React.useEffect((function () {
@@ -18,7 +18,7 @@ function HyperPaymentMethodsSession(props) {
                       hyper,
                       Utils.normalizeToPromise(options)
                     ]).then(function (param) {
-                    var session = param[0].initPaymentMethodsSession(param[1]);
+                    var session = param[0].initPaymentMethodSession(param[1]);
                     var newSessionValues_session = session;
                     var newSessionValues = {
                       session: newSessionValues_session,
@@ -29,20 +29,20 @@ function HyperPaymentMethodsSession(props) {
                         });
                     return Promise.resolve(newSessionValues);
                   }), (function (err) {
-                  console.error("[HyperPaymentMethodsSession] Failed to initialise hyper promise:", err);
-                  return Promise.resolve(Context.pendingPaymentMethodsSessionContext);
+                  console.error("[HyperPaymentMethodSession] Failed to initialise hyper promise:", err);
+                  return Promise.resolve(Context.pendingPaymentMethodSessionContext);
                 }));
         }), [
         hyper,
         options
       ]);
-  return JsxRuntime.jsx(Context.PaymentMethodsSessionContextProvider.make, {
+  return JsxRuntime.jsx(Context.PaymentMethodSessionContextProvider.make, {
               value: match[0],
               children: props.children
             });
 }
 
-var make = HyperPaymentMethodsSession;
+var make = HyperPaymentMethodSession;
 
 export {
   make ,

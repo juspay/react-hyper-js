@@ -234,21 +234,21 @@ var CardFormContextProvider = {
   make: make$3
 };
 
-var defaultPaymentMethodsSessionContext = {
+var defaultPaymentMethodSessionContext = {
   session: undefined,
   isPresent: false
 };
 
-var pendingPaymentMethodsSessionContext = {
+var pendingPaymentMethodSessionContext = {
   session: undefined,
   isPresent: true
 };
 
-var paymentMethodsSessionContext = React.createContext(defaultPaymentMethodsSessionContext);
+var paymentMethodSessionContext = React.createContext(defaultPaymentMethodSessionContext);
 
-var make$4 = paymentMethodsSessionContext.Provider;
+var make$4 = paymentMethodSessionContext.Provider;
 
-var PaymentMethodsSessionContextProvider = {
+var PaymentMethodSessionContextProvider = {
   make: make$4
 };
 
@@ -334,10 +334,10 @@ export {
   defaultCardFormContext ,
   cardFormContext ,
   CardFormContextProvider ,
-  defaultPaymentMethodsSessionContext ,
-  pendingPaymentMethodsSessionContext ,
-  paymentMethodsSessionContext ,
-  PaymentMethodsSessionContextProvider ,
+  defaultPaymentMethodSessionContext ,
+  pendingPaymentMethodSessionContext ,
+  paymentMethodSessionContext ,
+  PaymentMethodSessionContextProvider ,
   paymentMethodsManagementElementsOptionObjMapper ,
   defaultPaymentSessionContext ,
   paymentSessionContext ,
