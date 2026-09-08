@@ -82,7 +82,7 @@ type vaultCardForm = {
   fields: ref<JSON.t>,
 }
 
-type paymentMethodsSession = {
+type initPaymentMethodSession = {
   createCardForm: unit => vaultCardForm,
   update: JSON.t => unit,
   on: (string, JSON.t => unit) => unit,
@@ -129,7 +129,7 @@ type switchInstance = {
   completeUpdateIntent: string => promise<JSON.t>,
   initiateUpdateIntent: unit => promise<JSON.t>,
   confirmTokenization: JSON.t => Promise.t<JSON.t>,
-  paymentMethodsSession: JSON.t => paymentMethodsSession,
+  initPaymentMethodSession: JSON.t => initPaymentMethodSession,
 }
 
 type paymentElementProps = {

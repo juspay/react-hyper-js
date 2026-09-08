@@ -254,25 +254,25 @@ module CardFormContextProvider = {
   let make = React.Context.provider(cardFormContext)
 }
 
-type paymentMethodsSessionContextType = {
-  session: option<OrcaJs.paymentMethodsSession>,
+type paymentMethodSessionContextType = {
+  session: option<OrcaJs.initPaymentMethodSession>,
   isPresent: bool,
 }
 
-let defaultPaymentMethodsSessionContext: paymentMethodsSessionContextType = {
+let defaultPaymentMethodSessionContext: paymentMethodSessionContextType = {
   session: None,
   isPresent: false,
 }
 
-let pendingPaymentMethodsSessionContext: paymentMethodsSessionContextType = {
-  ...defaultPaymentMethodsSessionContext,
+let pendingPaymentMethodSessionContext: paymentMethodSessionContextType = {
+  ...defaultPaymentMethodSessionContext,
   isPresent: true,
 }
 
-let paymentMethodsSessionContext = React.createContext(defaultPaymentMethodsSessionContext)
+let paymentMethodSessionContext = React.createContext(defaultPaymentMethodSessionContext)
 
-module PaymentMethodsSessionContextProvider = {
-  let make = React.Context.provider(paymentMethodsSessionContext)
+module PaymentMethodSessionContextProvider = {
+  let make = React.Context.provider(paymentMethodSessionContext)
 }
 
 let paymentMethodsManagementElementsOptionObjMapper = (options: JSON.t) => {

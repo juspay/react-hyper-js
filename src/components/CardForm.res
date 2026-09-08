@@ -5,7 +5,7 @@ let make = React.forwardRef((
   imperativeRef,
 ) => {
   let elementsState = React.useContext(Context.elementsContext)
-  let sessionState = React.useContext(Context.paymentMethodsSessionContext)
+  let sessionState = React.useContext(Context.paymentMethodSessionContext)
   let createdRef = React.useRef(false)
   let (cardFormValue, setCardFormValue) = React.useState(() => Context.defaultCardFormContext)
 

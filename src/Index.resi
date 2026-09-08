@@ -13,7 +13,7 @@ let useWidgets: unit => Context.elementsType
 let useElements: unit => Context.elementsType
 let usePaymentSession: unit => Context.paymentSessionContextType
 let useCardForm: unit => Context.cardFormContextType
-let usePaymentMethodsSession: unit => Context.paymentMethodsSessionContextType
+let usePaymentMethodSession: unit => Context.paymentMethodSessionContextType
 let initPaymentSession: (
   promise<OrcaJs.switchInstance>,
   RescriptCore.JSON.t,
@@ -28,7 +28,7 @@ let \"HyperElements": HyperElements.props<
   RescriptCore.Promise.t<OrcaJs.switchInstance>,
   RescriptCore.JSON.t,
 > => React.element
-let \"HyperPaymentMethodsSession": HyperPaymentMethodsSession.props<
+let \"HyperPaymentMethodSession": HyperPaymentMethodSession.props<
   React.element,
   RescriptCore.Promise.t<OrcaJs.switchInstance>,
   RescriptCore.JSON.t,
