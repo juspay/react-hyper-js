@@ -188,13 +188,4 @@ let \"HyperManagementElements": HyperManagementElements.props<
   RescriptCore.Promise.t<OrcaJs.switchInstance>,
   RescriptCore.JSON.t,
 > => React.element
-let \"PaymentMethodsManagementElement": PaymentMethodsManagementElement.props<
-  string,
-  RescriptCore.JSON.t,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  string,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-  option<option<RescriptCore.JSON.t> => unit>,
-> => Jsx.element
+let \"PaymentMethodsManagementElement": React.component<OrcaJs.paymentMethodsManagementElementProps>

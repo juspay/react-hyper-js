@@ -2,6 +2,7 @@
 
 import * as Utils from "../Utils.bs.js";
 import * as React from "react";
+import * as OrcaJs from "../OrcaJs.bs.js";
 import * as Context from "../Context.bs.js";
 import * as Core__Promise from "@rescript/core/src/Core__Promise.bs.js";
 import * as JsxRuntime from "react/jsx-runtime";
@@ -55,6 +56,9 @@ function HyperElements(props) {
                     var switchValClone_completeUpdateIntent = switchInstance.completeUpdateIntent;
                     var switchValClone_initiateUpdateIntent = switchInstance.initiateUpdateIntent;
                     var switchValClone_confirmTokenization = switchInstance.confirmTokenization;
+                    var switchValClone_tokenize = function (param) {
+                      return Promise.resolve(OrcaJs.unsupportedOnSurfaceError("tokenize", "payments", "confirmPayment"));
+                    };
                     var switchValClone = {
                       clientSecret: switchValClone_clientSecret,
                       confirmPayment: switchValClone_confirmPayment,
@@ -64,7 +68,8 @@ function HyperElements(props) {
                       initPaymentSession: switchValClone_initPaymentSession,
                       completeUpdateIntent: switchValClone_completeUpdateIntent,
                       initiateUpdateIntent: switchValClone_initiateUpdateIntent,
-                      confirmTokenization: switchValClone_confirmTokenization
+                      confirmTokenization: switchValClone_confirmTokenization,
+                      tokenize: switchValClone_tokenize
                     };
                     var paymentSession = switchInstance.initPaymentSession(resolvedOptions);
                     var newPaymentSessionValues_getCustomerSavedPaymentMethods = paymentSession.getCustomerSavedPaymentMethods;
