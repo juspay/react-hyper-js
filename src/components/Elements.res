@@ -28,6 +28,14 @@ let make = (~children, ~stripe: Promise.t<OrcaJs.switchInstance>, ~options: JSON
         completeUpdateIntent: switchInstance.completeUpdateIntent,
         initiateUpdateIntent: switchInstance.initiateUpdateIntent,
         confirmTokenization: switchInstance.confirmTokenization,
+        tokenize: _ =>
+          Promise.resolve(
+            OrcaJs.unsupportedOnSurfaceError(
+              ~method="tokenize",
+              ~surface="payments",
+              ~alternative="confirmPayment",
+            ),
+          ),
       }
       setSwitchState(_ => switchValClone)
       setElementsState(_ => newElemValues)

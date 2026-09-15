@@ -129,6 +129,7 @@ type switchInstance = {
   completeUpdateIntent: string => promise<JSON.t>,
   initiateUpdateIntent: unit => promise<JSON.t>,
   confirmTokenization: JSON.t => Promise.t<JSON.t>,
+  tokenize: JSON.t => Promise.t<JSON.t>,
   initPaymentMethodSession: JSON.t => initPaymentMethodSession,
 }
 
@@ -145,6 +146,21 @@ type paymentElementProps = {
 }
 
 type paymentElementHandle = {confirmPayment: JSON.t => Promise.t<JSON.t>}
+type paymentMethodsManagementElementHandle = {
+  confirmTokenization: JSON.t => Promise.t<JSON.t>,
+  tokenize: JSON.t => Promise.t<JSON.t>,
+}
+
+type paymentMethodsManagementElementProps = {
+  id: option<string>,
+  options: JSON.t,
+  onChange: option<option<JSON.t> => unit>,
+  onReady: option<option<JSON.t> => unit>,
+  componentType: option<string>,
+  onFocus: option<option<JSON.t> => unit>,
+  onBlur: option<option<JSON.t> => unit>,
+  onClick: option<option<JSON.t> => unit>,
+}
 type cardFormHandle = {
   confirmPayment: unit => Promise.t<JSON.t>,
   tokenize: unit => Promise.t<JSON.t>,

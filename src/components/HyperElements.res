@@ -31,6 +31,14 @@ let make = (~children, ~hyper: Promise.t<OrcaJs.switchInstance>, ~options: 'a) =
         completeUpdateIntent: switchInstance.completeUpdateIntent,
         initiateUpdateIntent: switchInstance.initiateUpdateIntent,
         confirmTokenization: switchInstance.confirmTokenization,
+        tokenize: _ =>
+          Promise.resolve(
+            OrcaJs.unsupportedOnSurfaceError(
+              ~method="tokenize",
+              ~surface="payments",
+              ~alternative="confirmPayment",
+            ),
+          ),
       }
 
       let paymentSession = switchInstance.initPaymentSession(resolvedOptions)

@@ -45,6 +45,7 @@ function HyperManagementElements(props) {
                     var switchValClone_completeUpdateIntent = switchInstance.completeUpdateIntent;
                     var switchValClone_initiateUpdateIntent = switchInstance.initiateUpdateIntent;
                     var switchValClone_confirmTokenization = switchInstance.confirmTokenization;
+                    var switchValClone_tokenize = switchInstance.tokenize;
                     var switchValClone = {
                       clientSecret: "",
                       confirmPayment: switchValClone_confirmPayment,
@@ -54,7 +55,8 @@ function HyperManagementElements(props) {
                       initPaymentSession: switchValClone_initPaymentSession,
                       completeUpdateIntent: switchValClone_completeUpdateIntent,
                       initiateUpdateIntent: switchValClone_initiateUpdateIntent,
-                      confirmTokenization: switchValClone_confirmTokenization
+                      confirmTokenization: switchValClone_confirmTokenization,
+                      tokenize: switchValClone_tokenize
                     };
                     setSwitchState(function (param) {
                           return switchValClone;

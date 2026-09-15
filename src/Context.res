@@ -86,6 +86,7 @@ type switchContextType = {
   completeUpdateIntent: string => promise<JSON.t>,
   initiateUpdateIntent: unit => promise<JSON.t>,
   confirmTokenization: JSON.t => Promise.t<JSON.t>,
+  tokenize: JSON.t => Promise.t<JSON.t>,
 }
 
 type paymentMethodsManagementSwitchContextType = {
@@ -131,6 +132,7 @@ let defaultSwitchContext = {
   completeUpdateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
   initiateUpdateIntent: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
   confirmTokenization: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
+  tokenize: _ => Promise.resolve(Dict.make()->JSON.Encode.object),
 }
 
 let switchContext = React.createContext(defaultSwitchContext)

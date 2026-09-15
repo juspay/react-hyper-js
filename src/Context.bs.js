@@ -51,6 +51,10 @@ function defaultSwitchContext_confirmTokenization(param) {
   return Promise.resolve({});
 }
 
+function defaultSwitchContext_tokenize(param) {
+  return Promise.resolve({});
+}
+
 var defaultSwitchContext = {
   clientSecret: "",
   confirmPayment: confirmPaymentFn,
@@ -60,7 +64,8 @@ var defaultSwitchContext = {
   initPaymentSession: defaultSwitchContext_initPaymentSession,
   completeUpdateIntent: defaultSwitchContext_completeUpdateIntent,
   initiateUpdateIntent: defaultSwitchContext_initiateUpdateIntent,
-  confirmTokenization: defaultSwitchContext_confirmTokenization
+  confirmTokenization: defaultSwitchContext_confirmTokenization,
+  tokenize: defaultSwitchContext_tokenize
 };
 
 var switchContext = React.createContext(defaultSwitchContext);
