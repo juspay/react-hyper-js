@@ -127,6 +127,7 @@ let \"CardExpiryWidget": CardExpiry.props<
 let \"CardNumberField": React.component<OrcaJs.cardFieldProps>
 let \"CardExpiryField": React.component<OrcaJs.cardFieldProps>
 let \"CardCVCField": React.component<OrcaJs.cardFieldProps>
+let \"CardholderNameField": React.component<OrcaJs.cardFieldProps>
 let \"GooglePayElement": GooglePayElement.props<
   string,
   RescriptCore.JSON.t,

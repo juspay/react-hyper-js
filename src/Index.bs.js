@@ -17,6 +17,7 @@ import * as ApplePayElement from "./components/ApplePayElement.bs.js";
 import * as CardExpiryField from "./components/CardExpiryField.bs.js";
 import * as CardNumberField from "./components/CardNumberField.bs.js";
 import * as GooglePayElement from "./components/GooglePayElement.bs.js";
+import * as CardholderNameField from "./components/CardholderNameField.bs.js";
 import * as ExpressCheckoutElement from "./components/ExpressCheckoutElement.bs.js";
 import * as HyperManagementElements from "./components/HyperManagementElements.bs.js";
 import * as HyperPaymentMethodSession from "./components/HyperPaymentMethodSession.bs.js";
@@ -91,6 +92,8 @@ var CardExpiryField$1 = CardExpiryField.make;
 
 var CardCVCField = CardCvcField.make;
 
+var CardholderNameField$1 = CardholderNameField.make;
+
 var GooglePayElement$1 = GooglePayElement.make;
 
 var ApplePayElement$1 = ApplePayElement.make;
@@ -131,6 +134,7 @@ export {
   CardNumberField$1 as CardNumberField,
   CardExpiryField$1 as CardExpiryField,
   CardCVCField ,
+  CardholderNameField$1 as CardholderNameField,
   GooglePayElement$1 as GooglePayElement,
   ApplePayElement$1 as ApplePayElement,
   PazeElement$1 as PazeElement,
