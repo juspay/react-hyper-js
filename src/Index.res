@@ -68,6 +68,8 @@ let \"CardExpiryField" = CardExpiryField.make
 
 let \"CardCVCField" = CardCvcField.make
 
+let \"CardholderNameField" = CardholderNameField.make
+
 let \"GooglePayElement" = GooglePayElement.make
 
 let \"ApplePayElement" = ApplePayElement.make
