@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "target": "ES2020",
+    "module": "ESNext",
+    "paths": {
+      "@juspay-tech/react-hyper-js": ["./src/index.d.ts"],
+      "@juspay-tech/hyper-js": ["../hyper-js/src/index.d.ts"]
+    }
+  },
+  "include": ["src/index.test-d.ts"]
+}
