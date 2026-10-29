@@ -5,6 +5,7 @@ let make = (
   ~options: JSON.t,
   ~onChange,
   ~onReady,
+  ~onResize=?,
   ~componentType: string,
   ~onFocus,
   ~onBlur,
@@ -35,6 +36,7 @@ let make = (
 
   React.useEffect2(() => {
     paymentElement.on("ready", onReady)
+    paymentElement.on("resize", onResize)
     paymentElement.on("focus", onFocus)
     paymentElement.on("blur", onBlur)
     paymentElement.on("clickTriggered", onClick)

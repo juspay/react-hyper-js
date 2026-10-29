@@ -11,6 +11,7 @@ var make = React.forwardRef(function (param, imperativeRef) {
                   options: param.options,
                   onChange: param.onChange,
                   onReady: param.onReady,
+                  onResize: param.onResize,
                   componentType: "payment",
                   onFocus: param.onFocus,
                   onBlur: param.onBlur,
