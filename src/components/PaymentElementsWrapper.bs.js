@@ -13,6 +13,7 @@ function PaymentElementsWrapper(props) {
   var onBlur = props.onBlur;
   var onFocus = props.onFocus;
   var componentType = props.componentType;
+  var onResize = props.onResize;
   var onReady = props.onReady;
   var onChange = props.onChange;
   var options = props.options;
@@ -37,6 +38,7 @@ function PaymentElementsWrapper(props) {
       ]);
   React.useEffect((function () {
           paymentElement.on("ready", onReady);
+          paymentElement.on("resize", onResize);
           paymentElement.on("focus", onFocus);
           paymentElement.on("blur", onBlur);
           paymentElement.on("clickTriggered", onClick);
