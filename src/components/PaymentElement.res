@@ -5,6 +5,7 @@ let make = React.forwardRef((
     options,
     onChange,
     onReady,
+    onResize,
     onFocus,
     onBlur,
     onClick,
@@ -18,6 +19,7 @@ let make = React.forwardRef((
     options
     onChange
     onReady
+    ?onResize
     onFocus
     onBlur
     onClick
