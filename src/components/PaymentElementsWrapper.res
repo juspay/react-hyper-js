@@ -1,7 +1,7 @@
 open OrcaJs
 @react.component
 let make = (
-  ~id="payment-Element",
+  ~id="",
   ~options: JSON.t,
   ~onChange,
   ~onReady,
@@ -14,38 +14,71 @@ let make = (
   ~onPaymentButtonClick,
   ~imperativeRef: Nullable.t<React.ref<paymentElementHandle>>=Nullable.null,
 ) => {
-  let hyperSwitch = React.useContext(Context.switchContext)
   let elementsState = React.useContext(Context.elementsContext)
   let divRef = React.useRef(Nullable.null)
-
-  let paymentElement = elementsState.create(componentType, options)
+  let widgetRef = React.useRef((None: option<paymentElement>))
+  let lastOptions = React.useRef("")
+  let mountId = Utils.useWidgetId(id)
 
   React.useImperativeHandle1(
     imperativeRef,
     () => {
-      confirmPayment: hyperSwitch.confirmPayment,
+      confirmPayment: payload =>
+        switch widgetRef.current {
+        | Some(widget) => widget.confirmPayment(payload)
+        | None => Promise.resolve(sdkNotReadyError())
+        },
     },
-    [hyperSwitch],
+    [elementsState],
   )
 
-  React.useEffect2(() => {
-    let paymentElement = elementsState.create(componentType, options)
-    paymentElement.mount(`#orca-elements-payment-element-${id}`)
+  React.useEffect3(() => {
+    let widget = elementsState.create(componentType, options)
+    widgetRef.current = Some(widget)
+    lastOptions.current = JSON.stringify(options)
+    widget.mount(`#orca-elements-payment-element-${mountId}`)
+    Some(
+      () => {
+        widget.destroy()
+        widgetRef.current = None
+      },
+    )
+  }, (elementsState, componentType, mountId))
+
+  React.useEffect(() => {
+    widgetRef.current->Option.forEach(widget => {
+      widget.on("ready", onReady)
+      widget.on("resize", onResize)
+      widget.on("focus", onFocus)
+      widget.on("blur", onBlur)
+      widget.on("clickTriggered", onClick)
+      widget.on("change", onChange)
+      widget.on("completeDoThis", onPaymentComplete)
+      widget.onSDKHandleClick(onPaymentButtonClick)
+    })
     None
-  }, (divRef, elementsState))
+  }, (
+    elementsState,
+    componentType,
+    mountId,
+    onReady,
+    onResize,
+    onFocus,
+    onBlur,
+    onClick,
+    onChange,
+    onPaymentComplete,
+    onPaymentButtonClick,
+  ))
 
-  React.useEffect2(() => {
-    paymentElement.on("ready", onReady)
-    paymentElement.on("resize", onResize)
-    paymentElement.on("focus", onFocus)
-    paymentElement.on("blur", onBlur)
-    paymentElement.on("clickTriggered", onClick)
-    paymentElement.on("change", onChange)
-    paymentElement.on("completeDoThis", onPaymentComplete)
-    paymentElement.onSDKHandleClick(onPaymentButtonClick)
-
+  React.useEffect(() => {
+    let serializedOptions = JSON.stringify(options)
+    if serializedOptions !== lastOptions.current {
+      widgetRef.current->Option.forEach(widget => widget.update(options))
+      lastOptions.current = serializedOptions
+    }
     None
-  }, (elementsState, hyperSwitch))
+  }, (elementsState, componentType, mountId, options))
 
-  <div ref={divRef->ReactDOM.Ref.domRef} id={`orca-elements-payment-element-${id}`} />
+  <div ref={divRef->ReactDOM.Ref.domRef} id={`orca-elements-payment-element-${mountId}`} />
 }

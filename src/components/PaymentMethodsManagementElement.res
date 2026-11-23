@@ -1,6 +1,6 @@
 @react.component
 let make = (
-  ~id="payment-management",
+  ~id="",
   ~options: JSON.t,
   ~onChange,
   ~onReady,
@@ -9,37 +9,55 @@ let make = (
   ~onBlur,
   ~onClick,
 ) => {
-  let hyperSwitch = React.useContext(Context.paymentMethodsManagementSwitchContext)
   let paymentMethodsManagementState = React.useContext(
     Context.paymentMethodsManagementElementsContext,
   )
   let divRef = React.useRef(Nullable.null)
 
-  let paymentElement = paymentMethodsManagementState.create(componentType, options)
-
-  React.useEffect(() => {
-    let paymentElement = paymentMethodsManagementState.create(componentType, options)
-    paymentElement.mount(`#orca-elements-payment-management-${id}`)
-    None
-  }, (divRef, paymentMethodsManagementState))
-
-  React.useEffect2(() => {
-    paymentElement.on("ready", onReady)
-    paymentElement.on("focus", onFocus)
-    paymentElement.on("blur", onBlur)
-    paymentElement.on("clickTriggered", onClick)
-    paymentElement.on("change", onChange)
-
+  let widgetRef = React.useRef((None: option<OrcaJs.paymentElement>))
+  let lastOptions = React.useRef("")
+  let mountId = Utils.useWidgetId(id)
+  React.useEffect3(() => {
+    let widget = paymentMethodsManagementState.create(componentType, options)
+    widgetRef.current = Some(widget)
+    lastOptions.current = JSON.stringify(options)
+    widget.mount(`#orca-elements-payment-management-${mountId}`)
     Some(
       () => {
-        paymentElement.on("ready", None)
-        paymentElement.on("focus", None)
-        paymentElement.on("blur", None)
-        paymentElement.on("clickTriggered", None)
-        paymentElement.on("change", None)
+        widget.destroy()
+        widgetRef.current = None
       },
     )
-  }, (paymentMethodsManagementState, hyperSwitch))
+  }, (paymentMethodsManagementState, componentType, mountId))
 
-  <div ref={divRef->ReactDOM.Ref.domRef} id={`orca-elements-payment-management-${id}`} />
+  React.useEffect(() => {
+    widgetRef.current->Option.forEach(widget => {
+      widget.on("ready", onReady)
+      widget.on("focus", onFocus)
+      widget.on("blur", onBlur)
+      widget.on("clickTriggered", onClick)
+      widget.on("change", onChange)
+    })
+    None
+  }, (
+    paymentMethodsManagementState,
+    componentType,
+    mountId,
+    onReady,
+    onFocus,
+    onBlur,
+    onClick,
+    onChange,
+  ))
+
+  React.useEffect(() => {
+    let serializedOptions = JSON.stringify(options)
+    if serializedOptions !== lastOptions.current {
+      widgetRef.current->Option.forEach(widget => widget.update(options))
+      lastOptions.current = serializedOptions
+    }
+    None
+  }, (paymentMethodsManagementState, componentType, mountId, options))
+
+  <div ref={divRef->ReactDOM.Ref.domRef} id={`orca-elements-payment-management-${mountId}`} />
 }

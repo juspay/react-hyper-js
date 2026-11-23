@@ -28,7 +28,25 @@ type paymentElement = {
   focus: unit => unit,
   clear: unit => unit,
   onSDKHandleClick: (unit => Promise.t<unit>) => unit,
+  confirmPayment: JSON.t => Promise.t<JSON.t>,
 }
+
+let makeErrorResponse = (code: string, message: string): JSON.t => {
+  let errorDict = Dict.make()
+  errorDict->Dict.set("code", code->JSON.Encode.string)
+  errorDict->Dict.set("message", message->JSON.Encode.string)
+  let resultDict = Dict.make()
+  resultDict->Dict.set("status", "error"->JSON.Encode.string)
+  resultDict->Dict.set("error", errorDict->JSON.Encode.object)
+  resultDict->JSON.Encode.object
+}
+
+let sdkNotReadyError = (): JSON.t =>
+  makeErrorResponse(
+    "sdk_not_ready",
+    "Hyper is not initialized yet — the card form is not ready",
+  )
+
 let defaultPaymentElement = {
   on: (_str, _func) => (),
   collapse: () => (),
@@ -40,6 +58,7 @@ let defaultPaymentElement = {
   focus: () => (),
   clear: () => (),
   onSDKHandleClick: _ => (),
+  confirmPayment: _ => Promise.resolve(sdkNotReadyError()),
 }
 
 type fieldHandle = {
@@ -180,22 +199,6 @@ type cardFieldProps = {
   onFocus: option<JSON.t => unit>,
   onBlur: option<JSON.t => unit>,
 }
-
-let makeErrorResponse = (code: string, message: string): JSON.t => {
-  let errorDict = Dict.make()
-  errorDict->Dict.set("code", code->JSON.Encode.string)
-  errorDict->Dict.set("message", message->JSON.Encode.string)
-  let resultDict = Dict.make()
-  resultDict->Dict.set("status", "error"->JSON.Encode.string)
-  resultDict->Dict.set("error", errorDict->JSON.Encode.object)
-  resultDict->JSON.Encode.object
-}
-
-let sdkNotReadyError = (): JSON.t =>
-  makeErrorResponse(
-    "sdk_not_ready",
-    "Hyper is not initialized yet — the card form is not ready",
-  )
 
 let unsupportedOnSurfaceError = (~method: string, ~surface: string, ~alternative: string): JSON.t =>
   makeErrorResponse(
