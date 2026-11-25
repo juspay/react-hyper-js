@@ -3,6 +3,20 @@
 
 var This = {};
 
+function makeErrorResponse(code, message) {
+  var errorDict = {};
+  errorDict["code"] = code;
+  errorDict["message"] = message;
+  var resultDict = {};
+  resultDict["status"] = "error";
+  resultDict["error"] = errorDict;
+  return resultDict;
+}
+
+function sdkNotReadyError() {
+  return makeErrorResponse("sdk_not_ready", "Hyper is not initialized yet — the card form is not ready");
+}
+
 function defaultPaymentElement_on(_str, _func) {
   
 }
@@ -43,6 +57,10 @@ function defaultPaymentElement_onSDKHandleClick(param) {
   
 }
 
+function defaultPaymentElement_confirmPayment(param) {
+  return Promise.resolve(makeErrorResponse("sdk_not_ready", "Hyper is not initialized yet — the card form is not ready"));
+}
+
 var defaultPaymentElement = {
   on: defaultPaymentElement_on,
   collapse: defaultPaymentElement_collapse,
@@ -53,7 +71,8 @@ var defaultPaymentElement = {
   mount: defaultPaymentElement_mount,
   focus: defaultPaymentElement_focus,
   clear: defaultPaymentElement_clear,
-  onSDKHandleClick: defaultPaymentElement_onSDKHandleClick
+  onSDKHandleClick: defaultPaymentElement_onSDKHandleClick,
+  confirmPayment: defaultPaymentElement_confirmPayment
 };
 
 function defaultFieldHandle_mount(_string) {
@@ -99,30 +118,16 @@ var defaultFieldHandle = {
   on: defaultFieldHandle_on
 };
 
-function makeErrorResponse(code, message) {
-  var errorDict = {};
-  errorDict["code"] = code;
-  errorDict["message"] = message;
-  var resultDict = {};
-  resultDict["status"] = "error";
-  resultDict["error"] = errorDict;
-  return resultDict;
-}
-
-function sdkNotReadyError() {
-  return makeErrorResponse("sdk_not_ready", "Hyper is not initialized yet — the card form is not ready");
-}
-
 function unsupportedOnSurfaceError(method, surface, alternative) {
   return makeErrorResponse("unsupported_on_surface", method + "() is not available on the " + surface + " surface — use " + alternative + "()");
 }
 
 export {
   This ,
-  defaultPaymentElement ,
-  defaultFieldHandle ,
   makeErrorResponse ,
   sdkNotReadyError ,
+  defaultPaymentElement ,
+  defaultFieldHandle ,
   unsupportedOnSurfaceError ,
 }
 /* No side effect */
