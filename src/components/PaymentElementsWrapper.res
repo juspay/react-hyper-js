@@ -33,16 +33,20 @@ let make = (
   )
 
   React.useEffect3(() => {
-    let widget = elementsState.create(componentType, options)
-    widgetRef.current = Some(widget)
-    lastOptions.current = JSON.stringify(options)
-    widget.mount(`#orca-elements-payment-element-${mountId}`)
-    Some(
-      () => {
-        widget.destroy()
-        widgetRef.current = None
-      },
-    )
+    if mountId === "" {
+      None
+    } else {
+      let widget = elementsState.create(componentType, options)
+      widgetRef.current = Some(widget)
+      lastOptions.current = JSON.stringify(options)
+      widget.mount(`#orca-elements-payment-element-${mountId}`)
+      Some(
+        () => {
+          widget.destroy()
+          widgetRef.current = None
+        },
+      )
+    }
   }, (elementsState, componentType, mountId))
 
   React.useEffect(() => {
@@ -80,5 +84,6 @@ let make = (
     None
   }, (elementsState, componentType, mountId, options))
 
-  <div ref={divRef->ReactDOM.Ref.domRef} id={`orca-elements-payment-element-${mountId}`} />
+  let containerId = mountId === "" ? None : Some(`orca-elements-payment-element-${mountId}`)
+  <div ref={divRef->ReactDOM.Ref.domRef} id=?containerId />
 }

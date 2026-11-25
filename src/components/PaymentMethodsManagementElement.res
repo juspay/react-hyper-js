@@ -18,16 +18,20 @@ let make = (
   let lastOptions = React.useRef("")
   let mountId = Utils.useWidgetId(id)
   React.useEffect3(() => {
-    let widget = paymentMethodsManagementState.create(componentType, options)
-    widgetRef.current = Some(widget)
-    lastOptions.current = JSON.stringify(options)
-    widget.mount(`#orca-elements-payment-management-${mountId}`)
-    Some(
-      () => {
-        widget.destroy()
-        widgetRef.current = None
-      },
-    )
+    if mountId === "" {
+      None
+    } else {
+      let widget = paymentMethodsManagementState.create(componentType, options)
+      widgetRef.current = Some(widget)
+      lastOptions.current = JSON.stringify(options)
+      widget.mount(`#orca-elements-payment-management-${mountId}`)
+      Some(
+        () => {
+          widget.destroy()
+          widgetRef.current = None
+        },
+      )
+    }
   }, (paymentMethodsManagementState, componentType, mountId))
 
   React.useEffect(() => {
@@ -59,5 +63,6 @@ let make = (
     None
   }, (paymentMethodsManagementState, componentType, mountId, options))
 
-  <div ref={divRef->ReactDOM.Ref.domRef} id={`orca-elements-payment-management-${mountId}`} />
+  let containerId = mountId === "" ? None : Some(`orca-elements-payment-management-${mountId}`)
+  <div ref={divRef->ReactDOM.Ref.domRef} id=?containerId />
 }

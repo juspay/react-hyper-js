@@ -24,6 +24,9 @@ function PaymentMethodsManagementElement(props) {
   var lastOptions = React.useRef("");
   var mountId = Utils.useWidgetId(id);
   React.useEffect((function () {
+          if (mountId === "") {
+            return ;
+          }
           var widget = paymentMethodsManagementState.create(componentType, options);
           widgetRef.current = widget;
           lastOptions.current = JSON.stringify(options);
@@ -70,9 +73,10 @@ function PaymentMethodsManagementElement(props) {
         mountId,
         options
       ]);
+  var containerId = mountId === "" ? undefined : "orca-elements-payment-management-" + mountId;
   return JsxRuntime.jsx("div", {
               ref: Caml_option.some(divRef),
-              id: "orca-elements-payment-management-" + mountId
+              id: containerId
             });
 }
 

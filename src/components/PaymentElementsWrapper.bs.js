@@ -41,6 +41,9 @@ function PaymentElementsWrapper(props) {
                 };
         }), [elementsState]);
   React.useEffect((function () {
+          if (mountId === "") {
+            return ;
+          }
           var widget = elementsState.create(componentType, options);
           widgetRef.current = widget;
           lastOptions.current = JSON.stringify(options);
@@ -93,9 +96,10 @@ function PaymentElementsWrapper(props) {
         mountId,
         options
       ]);
+  var containerId = mountId === "" ? undefined : "orca-elements-payment-element-" + mountId;
   return JsxRuntime.jsx("div", {
               ref: Caml_option.some(divRef),
-              id: "orca-elements-payment-element-" + mountId
+              id: containerId
             });
 }
 

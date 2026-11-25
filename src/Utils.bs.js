@@ -8,18 +8,30 @@ function normalizeToPromise(options) {
 
 function useWidgetId(id) {
   var generated = React.useRef("");
-  if (id === "" && generated.current === "") {
-    var uniqueId;
-    try {
-      uniqueId = crypto.randomUUID();
-    }
-    catch (exn){
-      uniqueId = Math.random().toString().replace(".", "");
-    }
-    generated.current = "widget-" + uniqueId;
-  }
+  var match = React.useState(function () {
+        return "";
+      });
+  var setGeneratedId = match[1];
+  React.useEffect((function () {
+          if (id === "") {
+            if (generated.current === "") {
+              var uniqueId;
+              try {
+                uniqueId = crypto.randomUUID();
+              }
+              catch (exn){
+                uniqueId = Math.random().toString().replace(".", "");
+              }
+              generated.current = "widget-" + uniqueId;
+            }
+            setGeneratedId(function (param) {
+                  return generated.current;
+                });
+          }
+
+        }), [id]);
   if (id === "") {
-    return generated.current;
+    return match[0];
   } else {
     return id;
   }
